@@ -4,3 +4,6 @@ set et
 set autoindent
 set spell
 set spelllang=en_gb
+
+" Set the default terminal width for rst files.
+au BufReadPost *.rst set tw=120
