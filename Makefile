@@ -55,7 +55,7 @@ endif
 
 DATE=$(shell date)
 
-deploy: dirhtml
+deploy: clean dirhtml
 	git checkout gh-pages
 	-rsync -a --delete --exclude=.* --exclude=.gitignore --exclude=.git --exclude=$(BUILDDIR)/* $(BUILDDIR)/dirhtml/ .
 	-git add .
