@@ -53,15 +53,15 @@ ifndef CURRENT_BRANCH
 CURRENT_BRANCH = $(error Could not get current branch.)
 endif
 
-deploy:
-	git stash
+DATE=$(shell date)
+
+deploy: dirhtml
 	git checkout gh-pages
-	rsync -a --delete --exclude=.gitignore --exclude=.git $(BUILDDIR)/dirhtml/ .
-	git add .
-	git add -u
-	git commit -m 'Automatic build commit.'
+	-rsync -a --delete --exclude=.gitignore --exclude=.git --exclude=$(BUILDDIR)/* $(BUILDDIR)/dirhtml/ .
+	-git add .
+	-git add -u
+	-git commit -m 'Automatic build commit on $(DATE).'
 	git checkout ${CURRENT_BRANCH}
-	git stash pop
 
 clean:
 	-rm -rf $(BUILDDIR)/*
