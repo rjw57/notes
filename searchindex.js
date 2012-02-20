@@ -1,0 +1,1 @@
+Search.setIndex({objects:{},terms:{index:0,search:0,welcom:0,modul:0,some:0,indic:0,note:0,thing:0,interest:0,tabl:0,content:0,document:0,page:0},objtypes:{},titles:["Welcome to Some Notes on Interesting Things&#8217;s documentation!"],objnames:{},filenames:["index"]})
