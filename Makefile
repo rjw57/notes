@@ -57,7 +57,7 @@ DATE=$(shell date)
 
 deploy: dirhtml
 	git checkout gh-pages
-	-rsync -a --delete --exclude=.gitignore --exclude=.git --exclude=$(BUILDDIR)/* $(BUILDDIR)/dirhtml/ .
+	-rsync -a --delete --exclude=.* --exclude=.gitignore --exclude=.git --exclude=$(BUILDDIR)/* $(BUILDDIR)/dirhtml/ .
 	-git add .
 	-git add -u
 	-git commit -m 'Automatic build commit on $(DATE).'
