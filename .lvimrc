@@ -1,0 +1,6 @@
+set sw=4
+set sts=4
+set et
+set autoindent
+set spell
+set spelllang=en_gb
