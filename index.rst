@@ -3,11 +3,16 @@ Contents
 
 These are a collection of notes I make on interesting topics as I approach
 them. These are mainly for my own use but I've decided to publish them a) for
-backup purposes and b) to learn how the _`GitHub pages` system works.
+backup purposes and b) to learn how the `GitHub pages`_ system works.
 
 .. _`GitHub pages`: http://pages.github.com/
 
 You may search these documents via the :ref:`search`.
+
+.. toctree::
+    :maxdepth: 1
+
+    github-pages
 
 Work in progress notes
 ----------------------
