@@ -1,22 +1,20 @@
-.. Some Notes on Interesting Things documentation master file, created by
-   sphinx-quickstart on Mon Feb 20 13:45:37 2012.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Contents
+========
 
-Welcome to Some Notes on Interesting Things's documentation!
-============================================================
+These are a collection of notes I make on interesting topics as I approach
+them. These are mainly for my own use but I've decided to publish them a) for
+backup purposes and b) to learn how the _`GitHub pages` system works.
 
-Contents:
+.. _`GitHub pages`: http://pages.github.com/
+
+You may search these documents via the :ref:`search`.
+
+Work in progress notes
+----------------------
+
+These notes are works in progress and may or may not be in a useful state.
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 1
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+    using-git
