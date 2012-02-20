@@ -9,6 +9,11 @@ backup purposes and b) to learn how the `GitHub pages`_ system works.
 
 You may search these documents via the :ref:`search`.
 
+Finished notes
+--------------
+
+These notes are mostly complete or are unlikely to be updated greatly beyond bug-fixes.
+
 .. toctree::
     :maxdepth: 1
 
