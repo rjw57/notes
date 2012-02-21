@@ -18,6 +18,7 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
     :maxdepth: 1
 
     github-pages
+    gis-with-python
 
 Work in progress notes
 ----------------------
