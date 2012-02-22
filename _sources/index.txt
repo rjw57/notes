@@ -19,6 +19,7 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
 
     github-pages
     gis-with-python
+    earth-is-not-an-ellipsoid
 
 Work in progress notes
 ----------------------
@@ -29,4 +30,3 @@ These notes are works in progress and may or may not be in a useful state.
     :maxdepth: 1
 
     using-git
-    earth-is-not-an-ellipsoid

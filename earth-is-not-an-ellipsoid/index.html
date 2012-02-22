@@ -29,7 +29,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../_static/theme_extras.js"></script>
     <link rel="top" title="Some Notes on Interesting Things" href="../" />
-    <link rel="prev" title="Using git for your work" href="../using-git/" />
+    <link rel="next" title="Using git for your work" href="../using-git/" />
+    <link rel="prev" title="Using Python to interoperate with GIS systems" href="../gis-with-python/" />
 <link rel="stylesheet" href="../_static/custom.css" type="text/css">
 
   </head>
@@ -41,9 +42,11 @@
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>
+        «&#160;&#160;<a href="../gis-with-python/">Using Python to interoperate with GIS systems</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>&#160;&#160;»
         </p>
 
       </div>
@@ -52,19 +55,37 @@
         
   <div class="section" id="the-earth-is-not-an-ellipsoid">
 <h1>The Earth is <em>not</em> an ellipsoid<a class="headerlink" href="#the-earth-is-not-an-ellipsoid" title="Permalink to this headline">¶</a></h1>
-<p class="centered">
-<strong>FIXME: this is wrong. We end up with an extra term which should not be there.</strong></p><div class="figure align-center">
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>One of the first things you learn about the shape of the Earth after being told that it is spherical is that it actually
+is <em>not</em> spherical. Systems like GPS model the Earth as an ellipsoid with differing radii at the rotational poles and
+the equator but <em>is</em> the ideal Earth even an ellipsoid?</p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Recently I had to do some work with geographic projections and was marvelling at the number of different ways there seem
+to be to locate a point on the Earth&#8217;s surface. Most non-trivial projections tend to assume the Earth is ellipsoidal
+with some defined polar and equatorial radii along with mind-bogglingly precise estimates of the centre of mass of the
+Earth; the <a class="reference external" href="http://en.wikipedia.org/wiki/World_Geodetic_System">WGS84 datum</a> claims an accuracy of less than 2cm. I
+wondered how hard it would be to work out what the true shape of the ideal Earth is and whether I could do it with
+nothing more than first-year undergraduate Physics.</p>
+</div>
+<div class="section" id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ll start with a diagram showing a 2D cross-section or &#8216;slice&#8217; through the Earth which includes the axis of rotation:</p>
+<div class="figure align-center">
 <img alt="A figure showing the geometry of a slice through the Earth." src="../_images/ellipse-geometry.png" />
 </div>
-<p>It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider a
-2D &#8216;slice&#8217; through the earth which goes through its centre of mass. The figure above shows the geometry of that slice
-through the Earth. The centre of mass of the Earth is at <span class="math">\(O\)</span> and a point on the surface is at <span class="math">\((x, y)\)</span>. The
-y-axis is parallel to the line segment <span class="math">\(OB\)</span> which is also the rotational axis. The line segment <span class="math">\(OA\)</span> is
-perpendicular to <span class="math">\(OB\)</span> and is parallel to the x-axis.</p>
+<p>It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider the
+shape of this slice and assert that the Earth is a solid of revolution by symmetry. The figure above shows the geometry
+of that slice through the Earth. The centre of mass of the Earth is at <span class="math">\(O\)</span> and a point on the surface is at
+<span class="math">\((x, y)\)</span>. The y-axis is parallel to the line segment <span class="math">\(OB\)</span> which is also the rotational axis. The line
+segment <span class="math">\(OA\)</span> is perpendicular to <span class="math">\(OB\)</span> and is parallel to the x-axis.</p>
 <p>On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
 on the surface. The unit vectors <span class="math">\(\hat{e}_x\)</span> and <span class="math">\(\hat{e}_y\)</span> point, respectively, along the x- and y-axes.
 The unit vector <span class="math">\(\hat{e}_N\)</span> points along the surface of the Earth in a northerly direction, i.e. in the direction
 one must walk to reach <span class="math">\(B\)</span>.</p>
+</div>
 <div class="section" id="assuming-the-earth-is-an-ellipsoid">
 <h2>Assuming the Earth is an ellipsoid<a class="headerlink" href="#assuming-the-earth-is-an-ellipsoid" title="Permalink to this headline">¶</a></h2>
 <p>Firstly, let&#8217;s proceed by assuming that the Earth <em>is</em> an ellipsoid. If so, our slice is an ellipse and we can label the
@@ -78,7 +99,7 @@ major and minor radii <span class="math">\(a\)</span> and <span class="math">\(b
 \frac{dy}{dx} = - \frac{b^2}{a^2} \frac{x}{y}.\]</div>
 <p>If we let <span class="math">\(\hat{e}_N = n_x \hat{e}_x + n_y \hat{e}_y\)</span> then it is clear that, at <span class="math">\(P\)</span>,</p>
 <div class="math" id="equation-ellipse">
-<span class="eqno">(1)</span>\[\frac{dy}{dx} = \frac{n_y}{n_x}
+<span class="eqno">(1)</span>\[\frac{dy}{dx} = \frac{-n_y}{-n_x}
 \qquad \Rightarrow \qquad
 \frac{n_y}{n_x} = - \frac{b^2}{a^2} \frac{x}{y}.\]</div>
 <p>This is the relation that must be true for the Earth to be an ellipsoid: at all points on the surface <span class="math">\(n_y / n_x\)</span>
@@ -99,16 +120,14 @@ elementary mechanics tells us that the centrifugal force is</p>
 <div class="math">
 \[f_c = \frac{m x^2 \omega^2}{r} \hat{e}_x.\]</div>
 <p>The force due to gravity is also simple to write down. It acts to pull the mass towards <span class="math">\(O\)</span> backwards along the
-radial direction <span class="math">\(\hat{e}_r\)</span>. If <span class="math">\(\theta\)</span> is the angle <span class="math">\(OP\)</span> makes to <span class="math">\(OA\)</span> then some elementary
-geometry tells us that</p>
+radial direction <span class="math">\(\hat{e}_r\)</span>. If <span class="math">\(\theta\)</span> is the angle <span class="math">\(OP\)</span> makes to <span class="math">\(OA\)</span> then some geometry
+tells us that</p>
 <div class="math">
 \[\hat{e}_r = \hat{e}_x \cos \theta + \hat{e}_y \sin \theta = \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y\]</div>
 <p>and so the force due to gravity is</p>
 <div class="math">
-\[f_g
-= - \frac{G m_e m}{r^2} \hat{e}_r
-= - \frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y \right]\]</div>
-<p>where <span class="math">\(m_e\)</span> is the mass of the Earth.</p>
+\[f_g = - \frac{G m_e m}{r^2} \hat{e}_r\]</div>
+<p>where <span class="math">\(m_e\)</span> is the mass of the Earth and <span class="math">\(G\)</span> is the gravitational constant..</p>
 </div>
 <div class="section" id="calculating-the-shape-of-the-earth">
 <h2>Calculating the shape of the Earth<a class="headerlink" href="#calculating-the-shape-of-the-earth" title="Permalink to this headline">¶</a></h2>
@@ -117,43 +136,41 @@ geometry tells us that</p>
 \[f_c \cdot \hat{e}_N + f_g \cdot \hat{e}_N = 0
 \qquad \Rightarrow \qquad
 \frac{m x^2 \omega^2}{r} \hat{e}_x \cdot \hat{e}_N -
-\frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x \cdot \hat{e}_N  + \frac{y}{r} \hat{e}_y \cdot \hat{e}_N \right]
+\frac{G m_e m}{r^2} \hat{e}_r \cdot \hat{e}_N
 = 0.\]</div>
-<p>We can immediately simplify this equation by eliminating <span class="math">\(m\)</span> and multiplying by <span class="math">\(r\)</span> to get</p>
+<p>We can simplify this equation by multiplying both sides by <span class="math">\(r/m\)</span> to get</p>
 <div class="math" id="equation-phys-cond">
-<span class="eqno">(2)</span>\[x^2 \omega^2 \ \hat{e}_x \cdot \hat{e}_N -
-G m_e \left[ \frac{x}{r^2} \hat{e}_x \cdot \hat{e}_N + \frac{y}{r^2} \hat{e}_y \cdot \hat{e}_N \right]
+<span class="eqno">(2)</span>\[{x^2 \omega^2} \hat{e}_x \; \cdot \hat{e}_N -
+\frac{G m_e }{r} \hat{e}_r \; \cdot \hat{e}_N
 = 0.\]</div>
-<p>Since <span class="math">\(r^{-2} = (x^2 + y^2)^{-1}\)</span>, via the chain rule, it must be that</p>
+<p>Using our definition that <span class="math">\(\hat{e}_N = n_x \hat{e}_x + n_y \hat{e}_y\)</span>, it follows that</p>
 <div class="math">
-\[\frac{d}{dx} r^{-2} = 2x \cdot -(x^2 + y^2)^{-2} = - 2 \frac{x}{r^4}\]</div>
-<p>and so, via the product rule,</p>
+\[{x^2 \omega^2} n_x - \frac{G m_e }{r} \left[ \frac{x}{r} n_x + \frac{y}{r} n_y \right]
+= {x^2 \omega^2} n_x - G m_e \left[ \frac{x}{r^2} n_x + \frac{y}{r^2} n_y \right]
+= 0.\]</div>
+<p>Collecting like terms we obtain</p>
 <div class="math">
-\[\frac{d}{dx} \frac{x}{r^2} = \frac{1}{r^2} - 2 \frac{x^2}{r^4},
-\qquad
-\frac{d}{dx} \frac{y}{r^2} = - 2 \frac{xy}{r^4}.\]</div>
-<p>We can now differentiate both sides of equation <a href="#equation-phys-cond">(2)</a> to get</p>
-<div class="math">
-\[2 x \omega^2 \hat{e}_x \cdot \hat{e}_N +
-G m_e \left[ 2 \frac{x^2}{r^4} - \frac{1}{r^2} \right] \hat{e}_x \cdot \hat{e}_N  +
-G m_e \left[ 2 \frac{xy}{r^4} \right] \hat{e}_x \cdot \hat{e}_N  = 0.\]</div>
-<p>Again, we can simplify by eliminating a factor of <span class="math">\(2x / r^2\)</span>, collecting like terms and remembering our definition
-of <span class="math">\(n_x = \hat{e}_x \cdot \hat{e}_N\)</span> and <span class="math">\(n_y = \hat{e}_x \cdot \hat{e}_N\)</span>:</p>
-<div class="math">
-\[G m_e \left[ \frac{y}{r^2} \right] n_y =
-\left( G m_e \left[ \frac{1}{2x} - \frac{x}{r^2} \right] - r^2 \omega^2 \right) n_x.\]</div>
-<p>If we rearrange to get an expression for <span class="math">\(n_y / n_x\)</span> we get</p>
-<div class="math">
-\[\frac{n_y}{n_x} =
-- \frac{x}{y}
-+ \frac{r^2}{2xy}
-- \frac{r^4 \omega^2}{G m_e} \frac{1}{y}.\]</div>
-<p>Which most certainly doesn&#8217;t match equation <a href="#equation-ellipse">(1)</a> which holds for an elliptical slice. In fact this differential
-equation has no analytic solution.</p>
-</div>
-<div class="section" id="conclusions">
-<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
-<p>We&#8217;ve shown that the shape of a slice through the Earth containing the axis of rotation is not in any way elliptical.</p>
+\[G m_e \frac{y}{r^2} n_y = \left[ - Gm_e \frac{x}{r^2} + x^2 \omega^2 \right] n_x
+\qquad \Rightarrow \qquad
+\frac{n_y}{n_x} = - \frac{x}{y} + \frac{\omega^2}{G m_e} \frac{x^2 r^2}{y}\]</div>
+<p>and one more re-arrangement gives our final form which can be compared to <a href="#equation-ellipse">(1)</a>.</p>
+<div class="math" id="equation-phys-result">
+<span class="eqno">(3)</span>\[\frac{n_y}{n_x}
+= - \left[ 1 + \frac{\omega^2}{G m_e} x r^2 \right] \frac{x}{y}
+= - [ 1 + \kappa_{x,r} ] \frac{x}{y},
+\qquad\qquad
+\kappa_{x,r} = \frac{\omega^2}{G m_e} x r^2.\]</div>
+<p>As expected our final relation is dimensionally consistent as the gravitational constant <span class="math">\(G\)</span> has units of length
+<sup>3</sup> mass <sup>-1</sup> time <sup>-2</sup>.</p>
+<p>Interestingly, this <em>almost</em> matches. In <a href="#equation-phys-result">(3)</a> the constant of proportionality is not a constant but a value
+which varies with position. Unfortunately this differential equation has no analytic solution and so one cannot write
+down an equation for the physical surface of an ideal Earth.</p>
+<p>The question does arise, however, exactly <em>how much</em> is the Earth not a sphere. At the North and South rotational poles
+the differential equation describes a sphere but at the equator, according to <a class="reference external" href="http://www.wolframalpha.com/input/?i=%28equatorial+radius+of+earth+^+3%29+*+%28angular+velocity+of+earth%29^2+%2F+%28gravitational+constant+*+mass+of+the+Earth%29">Wolfram Alpha</a>, <span class="math">\(\kappa_{x,r} =
+0.00346\)</span>. If the Earth were an ellipsoid the ratio of the radius at the equator to that at the pole would be
+around <span class="math">\(\sqrt{1.00346} \approx 1.0017\)</span> or 0.17% larger.</p>
+<p>Finally, if the Earth were to stop rotating so that <span class="math">\(\omega = 0\)</span>, you can see that <span class="math">\(\kappa_r,x = 0\)</span> and
+hence the Earth would, eventually, become a perfect sphere.</p>
 </div>
 </div>
 
@@ -162,9 +179,11 @@ equation has no analytic solution.</p>
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>
+        «&#160;&#160;<a href="../gis-with-python/">Using Python to interoperate with GIS systems</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>&#160;&#160;»
         </p>
 
       </div>

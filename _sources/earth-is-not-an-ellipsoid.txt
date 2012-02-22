@@ -1,17 +1,37 @@
 The Earth is *not* an ellipsoid
 ===============================
 
-.. centered:: FIXME: this is wrong. We end up with an extra term which should not be there.
+Abstract
+--------
+
+One of the first things you learn about the shape of the Earth after being told that it is spherical is that it actually
+is *not* spherical. Systems like GPS model the Earth as an ellipsoid with differing radii at the rotational poles and
+the equator but *is* the ideal Earth even an ellipsoid?
+
+Introduction
+------------
+
+Recently I had to do some work with geographic projections and was marvelling at the number of different ways there seem
+to be to locate a point on the Earth's surface. Most non-trivial projections tend to assume the Earth is ellipsoidal
+with some defined polar and equatorial radii along with mind-bogglingly precise estimates of the centre of mass of the
+Earth; the `WGS84 datum <http://en.wikipedia.org/wiki/World_Geodetic_System>`_ claims an accuracy of less than 2cm. I
+wondered how hard it would be to work out what the true shape of the ideal Earth is and whether I could do it with
+nothing more than first-year undergraduate Physics.
+
+Notation
+--------
+
+We'll start with a diagram showing a 2D cross-section or 'slice' through the Earth which includes the axis of rotation:
 
 .. figure:: earth-is-not-an-ellipsoid/ellipse-geometry.png
     :align: center
     :alt: A figure showing the geometry of a slice through the Earth.
 
-It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider a
-2D 'slice' through the earth which goes through its centre of mass. The figure above shows the geometry of that slice
-through the Earth. The centre of mass of the Earth is at :math:`O` and a point on the surface is at :math:`(x, y)`. The
-y-axis is parallel to the line segment :math:`OB` which is also the rotational axis. The line segment :math:`OA` is
-perpendicular to :math:`OB` and is parallel to the x-axis.
+It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider the
+shape of this slice and assert that the Earth is a solid of revolution by symmetry. The figure above shows the geometry
+of that slice through the Earth. The centre of mass of the Earth is at :math:`O` and a point on the surface is at
+:math:`(x, y)`. The y-axis is parallel to the line segment :math:`OB` which is also the rotational axis. The line
+segment :math:`OA` is perpendicular to :math:`OB` and is parallel to the x-axis.
 
 On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
 on the surface. The unit vectors :math:`\hat{e}_x` and :math:`\hat{e}_y` point, respectively, along the x- and y-axes.
@@ -39,7 +59,7 @@ If we let :math:`\hat{e}_N = n_x \hat{e}_x + n_y \hat{e}_y` then it is clear tha
 .. math::
     :label: ellipse
 
-    \frac{dy}{dx} = \frac{n_y}{n_x}
+    \frac{dy}{dx} = \frac{-n_y}{-n_x}
     \qquad \Rightarrow \qquad
     \frac{n_y}{n_x} = - \frac{b^2}{a^2} \frac{x}{y}.
 
@@ -64,20 +84,16 @@ elementary mechanics tells us that the centrifugal force is
 .. math:: f_c = \frac{m x^2 \omega^2}{r} \hat{e}_x.
 
 The force due to gravity is also simple to write down. It acts to pull the mass towards :math:`O` backwards along the
-radial direction :math:`\hat{e}_r`. If :math:`\theta` is the angle :math:`OP` makes to :math:`OA` then some elementary
-geometry tells us that
+radial direction :math:`\hat{e}_r`. If :math:`\theta` is the angle :math:`OP` makes to :math:`OA` then some geometry
+tells us that
 
 .. math:: \hat{e}_r = \hat{e}_x \cos \theta + \hat{e}_y \sin \theta = \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y
 
 and so the force due to gravity is
 
-.. math::
+.. math:: f_g = - \frac{G m_e m}{r^2} \hat{e}_r
 
-    f_g
-    = - \frac{G m_e m}{r^2} \hat{e}_r
-    = - \frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y \right]
-
-where :math:`m_e` is the mass of the Earth.
+where :math:`m_e` is the mass of the Earth and :math:`G` is the gravitational constant..
 
 Calculating the shape of the Earth
 ----------------------------------
@@ -89,59 +105,57 @@ Our physical condition is that the North-South gravity and centrifugal forces ca
     f_c \cdot \hat{e}_N + f_g \cdot \hat{e}_N = 0
     \qquad \Rightarrow \qquad
     \frac{m x^2 \omega^2}{r} \hat{e}_x \cdot \hat{e}_N -
-    \frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x \cdot \hat{e}_N  + \frac{y}{r} \hat{e}_y \cdot \hat{e}_N \right]
+    \frac{G m_e m}{r^2} \hat{e}_r \cdot \hat{e}_N
     = 0.
 
-We can immediately simplify this equation by eliminating :math:`m` and multiplying by :math:`r` to get
+We can simplify this equation by multiplying both sides by :math:`r/m` to get
 
 .. math:: 
     :label: phys-cond
 
-    x^2 \omega^2 \ \hat{e}_x \cdot \hat{e}_N -
-    G m_e \left[ \frac{x}{r^2} \hat{e}_x \cdot \hat{e}_N + \frac{y}{r^2} \hat{e}_y \cdot \hat{e}_N \right]
+    {x^2 \omega^2} \hat{e}_x \; \cdot \hat{e}_N -
+    \frac{G m_e }{r} \hat{e}_r \; \cdot \hat{e}_N
     = 0.
 
-Since :math:`r^{-2} = (x^2 + y^2)^{-1}`, via the chain rule, it must be that
+Using our definition that :math:`\hat{e}_N = n_x \hat{e}_x + n_y \hat{e}_y`, it follows that
 
-.. math:: \frac{d}{dx} r^{-2} = 2x \cdot -(x^2 + y^2)^{-2} = - 2 \frac{x}{r^4}
+.. math:: 
 
-and so, via the product rule,
+    {x^2 \omega^2} n_x - \frac{G m_e }{r} \left[ \frac{x}{r} n_x + \frac{y}{r} n_y \right]
+    = {x^2 \omega^2} n_x - G m_e \left[ \frac{x}{r^2} n_x + \frac{y}{r^2} n_y \right]
+    = 0.
 
-.. math::
-
-    \frac{d}{dx} \frac{x}{r^2} = \frac{1}{r^2} - 2 \frac{x^2}{r^4},
-    \qquad
-    \frac{d}{dx} \frac{y}{r^2} = - 2 \frac{xy}{r^4}.
-
-We can now differentiate both sides of equation :eq:`phys-cond` to get
+Collecting like terms we obtain
 
 .. math::
+    G m_e \frac{y}{r^2} n_y = \left[ - Gm_e \frac{x}{r^2} + x^2 \omega^2 \right] n_x
+    \qquad \Rightarrow \qquad
+    \frac{n_y}{n_x} = - \frac{x}{y} + \frac{\omega^2}{G m_e} \frac{x^2 r^2}{y}
 
-    2 x \omega^2 \hat{e}_x \cdot \hat{e}_N +
-    G m_e \left[ 2 \frac{x^2}{r^4} - \frac{1}{r^2} \right] \hat{e}_x \cdot \hat{e}_N  +
-    G m_e \left[ 2 \frac{xy}{r^4} \right] \hat{e}_x \cdot \hat{e}_N  = 0.
-
-Again, we can simplify by eliminating a factor of :math:`2x / r^2`, collecting like terms and remembering our definition
-of :math:`n_x = \hat{e}_x \cdot \hat{e}_N` and :math:`n_y = \hat{e}_x \cdot \hat{e}_N`:
+and one more re-arrangement gives our final form which can be compared to :eq:`ellipse`.
 
 .. math::
+    :label: phys-result
 
-    G m_e \left[ \frac{y}{r^2} \right] n_y =
-    \left( G m_e \left[ \frac{1}{2x} - \frac{x}{r^2} \right] - r^2 \omega^2 \right) n_x.
+    \frac{n_y}{n_x}
+    = - \left[ 1 + \frac{\omega^2}{G m_e} x r^2 \right] \frac{x}{y}
+    = - [ 1 + \kappa_{x,r} ] \frac{x}{y},
+    \qquad\qquad
+    \kappa_{x,r} = \frac{\omega^2}{G m_e} x r^2.
 
-If we rearrange to get an expression for :math:`n_y / n_x` we get
+As expected our final relation is dimensionally consistent as the gravitational constant :math:`G` has units of length
+:superscript:`3` mass :superscript:`-1` time :superscript:`-2`.
 
-.. math::
+Interestingly, this *almost* matches. In :eq:`phys-result` the constant of proportionality is not a constant but a value
+which varies with position. Unfortunately this differential equation has no analytic solution and so one cannot write
+down an equation for the physical surface of an ideal Earth.
 
-    \frac{n_y}{n_x} =
-    - \frac{x}{y}
-    + \frac{r^2}{2xy}
-    - \frac{r^4 \omega^2}{G m_e} \frac{1}{y}.
+The question does arise, however, exactly *how much* is the Earth not a sphere. At the North and South rotational poles
+the differential equation describes a sphere but at the equator, according to `Wolfram Alpha`_, :math:`\kappa_{x,r} =
+0.00346`. If the Earth were an ellipsoid the ratio of the radius at the equator to that at the pole would be
+around :math:`\sqrt{1.00346} \approx 1.0017` or 0.17% larger.
 
-Which most certainly doesn't match equation :eq:`ellipse` which holds for an elliptical slice. In fact this differential
-equation has no analytic solution.
+Finally, if the Earth were to stop rotating so that :math:`\omega = 0`, you can see that :math:`\kappa_r,x = 0` and
+hence the Earth would, eventually, become a perfect sphere.
 
-Conclusions
------------
-
-We've shown that the shape of a slice through the Earth containing the axis of rotation is not in any way elliptical.
+.. _`Wolfram Alpha`: http://www.wolframalpha.com/input/?i=%28equatorial+radius+of+earth+^+3%29+*+%28angular+velocity+of+earth%29^2+%2F+%28gravitational+constant+*+mass+of+the+Earth%29
