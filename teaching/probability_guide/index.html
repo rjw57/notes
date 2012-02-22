@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A very brief guide to probability &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="prev" title="Using git for your work" href="../../using-git/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>A very brief guide to probability</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../using-git/">Using <tt class="docutils literal docutils literal"><span class="pre">git</span></tt> for your work</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="a-very-brief-guide-to-probability">
+<h1>A very brief guide to probability<a class="headerlink" href="#a-very-brief-guide-to-probability" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-a-probability">
+<h2>What is a ‘probability’?<a class="headerlink" href="#what-is-a-probability" title="Permalink to this headline">¶</a></h2>
+<p>Probability is a tricky beast to define. There are two ways of viewing what the probability of an event <span class="math">\(A\)</span>
+actually is. These are termed the <em>frequentist</em> and <em>Bayesian</em> viewpoints:</p>
+<ul>
+<li><p class="first">A frequentist views the probability of an event, <span class="math">\(A\)</span> as the ratio between the number of times that <span class="math">\(A\)</span>
+happened (was true) and the number of times <span class="math">\(A\)</span> or not <span class="math">\(A\)</span> happened:</p>
+<div class="math">
+\[\boxed{ P(A) = \frac{n(A)}{n(A) + n(\lnot A)} }\]</div>
+<p>Notice how we’ve used <span class="math">\(n(A)\)</span> to mean ‘the number of times <span class="math">\(A\)</span> happened’ and <span class="math">\(\lnot A\)</span> to mean ‘not
+<span class="math">\(A\)</span>’.</p>
+</li>
+<li><p class="first">A Bayesian views the probability of <span class="math">\(A\)</span> as measure of our belief that <span class="math">\(A\)</span> is true. They use <span class="math">\(0\)</span> to
+show absolute certainty in <span class="math">\(\lnot A\)</span> and <span class="math">\(1\)</span> to show absolute certainty in <span class="math">\(A\)</span>.</p>
+</li>
+</ul>
+<p>Either viewpoint can be valid. Should <span class="math">\(A\)</span> represent a single result from many trials, for example tossing a coin
+and getting a Tail, the frequentist approach is intuitive and useful. Should <span class="math">\(A\)</span> represent a single true/false
+statement, for example ‘this drug is more effective than a placebo’, the truth of the statement does not change each
+time you ask the question. In such cases thinking of probability as a measure of belief makes sense. Which view of
+probability is useful depends on the problem being addressed.</p>
+<p>Also, did you notice the equation up there was boxed? I’ll put equations which are <em>very</em> useful definitions and terms
+to learn in boxes like that.</p>
+</div>
+<div class="section" id="random-variables">
+<h2>Random Variables<a class="headerlink" href="#random-variables" title="Permalink to this headline">¶</a></h2>
+<p>Very often one will be asked to find the probability of some <em>random variable</em> having a particular range of values. A
+random variable is just some number (or, in general, sets of numbers) we can observe or measure in some process. For
+example, a person’s height is a random variable: until we measure it, we cannot say with certainty what it is.</p>
+<p>Usually a random variable is denoted with a capital letter and a particular observation of that random variable with a
+lower-case letter.  For example we may use <span class="math">\(H\)</span> to mean ‘the height of a person’ and <span class="math">\(h\)</span> to mean ‘the
+measured height of a particular person’.</p>
+<p>For example we can read <span class="math">\(P(H \le 180\mbox{cm})\)</span> as ‘the probability that the height of a person is less than or
+equal to 180cm’.  Similarly we can read <span class="math">\(P(H \le h)\)</span> as ‘the probability that the height of a person is less than
+or equal to <span class="math">\(h\)</span>’. Notice how <span class="math">\(H\)</span> always stands for ‘the height of a person’ whereas <span class="math">\(h\)</span> stands for a
+particular height (e.g. 180cm or 137.5cm).</p>
+<p>What this means in practise is that if you have a function which deals with probability, all the arguments to that
+function which are numbers should be lower-case!</p>
+<p>Often this can be confusing so below, when we present some common functions, we’ll use <span class="math">\(\blacklozenge\)</span> to mean ‘a
+random variable’ (e.g.&nbsp;<span class="math">\(H\)</span>) and <span class="math">\(\lozenge\)</span> to mean ‘the value of a random variable’ (e.g.&nbsp;<span class="math">\(h\)</span>).
+When using the definitions of these functions you can substitute the <span class="math">\(\blacklozenge\)</span> and <span class="math">\(\lozenge\)</span>
+appropriately.</p>
+<p>Remember: <span class="math">\(\blacklozenge\)</span> is just a label which tells us what random variable we’re dealing with, <span class="math">\(\lozenge\)</span>
+is that variable’s actual value.</p>
+</div>
+<div class="section" id="the-cumulative-distribution-function">
+<h2>The Cumulative Distribution Function<a class="headerlink" href="#the-cumulative-distribution-function" title="Permalink to this headline">¶</a></h2>
+<p>The Cumulative Distribution Function (CDF) is, in essence, the starting point from which everything else you’ll use in
+probability derives. It is simply a function that tells us something about the value of a random variable. In fact it
+tells us the probability that a random variable will have a particular value or lower. The CDF for the random variable
+<span class="math">\(\blacklozenge\)</span> is defined to be:</p>
+<div class="math">
+\[\boxed{ F_\blacklozenge(\lozenge) = P(\blacklozenge \le \lozenge) }\]</div>
+<p>Recall that <span class="math">\(\blacklozenge\)</span> is just a label telling us what the random variable is. We could write down the
+definition of the CDF for the height of a person by simply substituting <span class="math">\(H\)</span> and <span class="math">\(h\)</span>:</p>
+<div class="math">
+\[F_H(h) = P(H \le h).\]</div>
+<div class="section" id="free-variables">
+<h3>Free variables<a class="headerlink" href="#free-variables" title="Permalink to this headline">¶</a></h3>
+<p>Now, it is only a convention that we use corresponding lower-case letters to denote particular values of the random
+variable. The CDF for the height of a person could just as easily been written as <span class="math">\(F_H(x) = P(H \le x)\)</span>. The
+important thing is that we know what random variable we’re talking about. Variables, like <span class="math">\(h\)</span>, which we are free
+to re-name—assuming we do it consistently—are called <em>free variables</em>.</p>
+<p>It is important to note what variables are free variables since it is often the case that a proof can be completed by
+just changing an <span class="math">\(x\)</span> to a <span class="math">\(y\)</span> in the right place!</p>
+</div>
+<div class="section" id="why-not-just-talk-about">
+<h3>Why not just talk about <span class="math">\(P(\blacklozenge = \lozenge)\)</span>?<a class="headerlink" href="#why-not-just-talk-about" title="Permalink to this headline">¶</a></h3>
+<p>So why do we use <span class="math">\(P(\blacklozenge \le \lozenge)\)</span> instead of <span class="math">\(P(\blacklozenge = \lozenge)\)</span>? Well, the
+answer is surprising: for many random variables the value of <span class="math">\(P(\blacklozenge = \lozenge)\)</span> is always zero!</p>
+<p>Imagine, for a moment, that <span class="math">\(\blacklozenge\)</span> is ‘the hour shown on a clock’ which we’ll call <span class="math">\(C\)</span>. If we
+assume this is a usual 12-hour clock, there are 12 distinct values that <span class="math">\(C\)</span> can take.  Let’s use the frequentist
+approach to calculate <span class="math">\(P(C = c)\)</span>:</p>
+<ul>
+<li><p class="first">If we look at the clock <span class="math">\(N\)</span> times at random we’d expect on average one twelfth of the time to find that the
+hour is <span class="math">\(c\)</span> so <span class="math">\(n(C = c) = N/12\)</span> if <span class="math">\(1 \le c \le 12\)</span> and zero otherwise.</p>
+</li>
+<li><p class="first">The rest of the time <span class="math">\(C \ne c\)</span> and so <span class="math">\(n(C \ne c) = 11N / 12\)</span> if <span class="math">\(1 \le c \le 12\)</span> and <span class="math">\(n(C
+\ne c) = N\)</span> otherwise.</p>
+</li>
+<li><p class="first">Using the frequentist definition of probability, therefore,</p>
+<div class="math">
+\[\begin{split}P(C = c) = \left\{
+\begin{array}{c l l}
+\frac{N/12}{N/12 + 11N/12} &amp; = 1/12 &amp; \mbox{if } 1 \le c \le 12 \\
+0 / N &amp; = 0 &amp; \mbox{otherwise}
+\end{array}
+\right.\end{split}\]</div>
+</li>
+</ul>
+<p>All fine and good. But now consider <span class="math">\(\blacklozenge\)</span> being ‘the angle the hour hand makes with the vertical’, or
+<span class="math">\(A\)</span>. Again consider the frequentist approach.</p>
+<ul class="simple">
+<li>There is one and only one case when <span class="math">\(A = a\)</span> so <span class="math">\(n(A = a) = 1\)</span>.</li>
+<li>There are an infinity of angles which are not <span class="math">\(a\)</span> so <span class="math">\(n(A \ne a) = \infty\)</span>.</li>
+<li>Hence <span class="math">\(P(A = a) = 1 / \infty = 0\)</span>.</li>
+</ul>
+<p>The argument above justifies our assertion that some random variables end up with the probability of them taking any one
+value as being zero.  To restate: there are an infinity of possible angles that the hour hand can take so, assuming them
+all to be equally likely, the probability of any one of them is zero.</p>
+<p>For most random variables it often makes more sense to consider the probability of them taking a <em>range</em> of values. For
+example, if the hour hand has angle <span class="math">\(a\)</span> corresponding to hour <span class="math">\(c\)</span> then it follows that <span class="math">\((c-1) \times
+30^\circ &lt; a \le c \times 30^\circ\)</span>. It should be possible to convince yourself it follows that</p>
+<div class="math">
+\[P(C = c) = P(A \le c \times 30^\circ) - P(A \le (c-1) \times 30^\circ),\]</div>
+<p>or, making use of the CDF for <span class="math">\(A\)</span>:</p>
+<div class="math">
+\[P(C = c) = F_A(c \times 30^\circ) - F_A((c-1) \times 30^\circ).\]</div>
+<p>Notice that the CDF for <span class="math">\(A\)</span> is actually useful and has a sensible value. If every position of the hour hand is
+equally likely then <span class="math">\(F_A(0^\circ) = 0\)</span> and <span class="math">\(F_A(360^\circ) = 1\)</span>. If we were to plot the value of
+<span class="math">\(F_A\)</span> it would look something like this:</p>
+<div class="figure">
+<p><img src="../../_images/tikz-a81b2b4bfaa12db3a03dcbe9f4fa2d4bce86e8d6.png" alt="%% axes
+\draw[-&gt;] (-.5,0)--(4.75,0) node[below right]{$a$};
+\draw[-&gt;] (0,-.25)--(0,3.75) node[left]{$F_A(a)$};
+
+%% the CDF
+\begin{scope}[very thick]
+\draw (-.5,0)--(0,0);
+\draw (0,0)--(4,3);
+\draw (4,3)--(4.75,3);
+\end{scope}
+
+%% the bounds
+\begin{scope}[dashed]
+\draw (-.5,3)--(4.25,3);
+\draw (4,3.25)--(4,-.25);
+\end{scope}
+
+%% y-axis
+\draw (-.75,3) node{1};
+\draw (-.75,0) node{0};
+
+%% x-axis
+\draw (4,-.5) node{$360^\circ$};
+\draw (0,-.5) node{$0^\circ$};" /></p>
+</div><p>We can even write down an explicit equation for <span class="math">\(F_A\)</span>:</p>
+<div class="math">
+\[\begin{split}F_A(a) = \left\{
+\begin{array}{cl}
+a / 360^\circ &amp; \mbox{if } 0^\circ \le a &lt; 360^\circ \\
+0 &amp; \mbox{otherwise.}
+\end{array}
+\right.\end{split}\]</div>
+<p>It is instructive to use this definition of <span class="math">\(F_A(a)\)</span> to convince yourself that it can be used to show that
+<span class="math">\(P(C=c) = 1/12\)</span> for valid <span class="math">\(c\)</span>.</p>
+</div>
+<div class="section" id="the-gaussian-cdf">
+<h3>The Gaussian CDF<a class="headerlink" href="#the-gaussian-cdf" title="Permalink to this headline">¶</a></h3>
+<p>There is a CDF which often comes up when measuring ‘natural’ random variables (like the height of a person) called the
+<em>Gaussian</em> CDF. You may also have heard it called the <em>normal distribution</em>. Let’s not worry for the moment exactly how
+hit is defined, instead lets just take a look at it:</p>
+<div class="figure">
+<p><img src="../../_images/tikz-b995d173731b0d95621f534ba4ccaedcad1417f9.png" alt="%% axes
+\draw[-&gt;] (-.5,0)--(4.75,0) node[below right]{$g$};
+\draw[-&gt;] (2,-.25)--(2,3.75) node[left]{$F_G(g)$};
+
+%% the CDF
+\begin{scope}[very thick]
+%% \draw plot[id=gaussian-cdf,domain={-.5:4.75}] function{3*0.5*(1+erf((x-2)/((2.0/3.0)*sqrt(2))))};
+\draw plot file {%(wd)s/teaching/probability_guide/gaussian-cdf.table};
+\end{scope}
+
+%% the bounds
+\begin{scope}[dashed]
+\draw (-.5,3)--(4.25,3);
+\draw (-.5,1.5)--(4.25,1.5);
+\draw (4,3.25)--(4,-.25);
+\draw (0,3.25)--(0,-.25);
+
+\draw (-.5,0.5)--(4.25,0.5);
+\draw (-.5,2.5)--(4.25,2.5);
+\draw (1.333,3.25)--(1.333,-.25);
+\draw (2.666,3.25)--(2.666,-.25);
+\end{scope}
+
+%% y-axis
+\draw (-.5,3) node[left]{1};
+\draw (-.5,1.5) node[left]{0.5};
+\draw (-.5,0) node[left]{0};
+
+\draw (-.5,0.5) node[left]{$\frac{1}{6}$};
+\draw (-.5,2.5) node[left]{$\frac{5}{6}$};
+
+%% x-axis2
+\draw (0,-.5) node{$-3$};
+\draw (1.333,-.5) node{$-1$};
+\draw (2,-.5) node{$0$};
+\draw (2.666,-.5) node{$1$};
+\draw (4,-.5) node{$3$};" /></p>
+</div><p>Being able to sketch the Gaussian CDF is <em>very</em> useful. We can already see some things from this picture. For instance,
+there is a 0.5 probability of <span class="math">\(G \le 0\)</span>. Also there is a probability of approximately <span class="math">\(2/3\)</span> that values
+are within <span class="math">\(\pm 1\)</span> of zero <a class="footnote-reference" href="#id2" id="id1">[1]</a>. The Gaussian is well suited to random variables whose values cluster around some
+central point and are spread equally either side.</p>
+<p>We find the Gaussian is often a good fit for ‘natural’ random variables like the height of a person. Here is the CDF of
+measured heights for women in the U.K.</p>
+<div class="figure">
+<p><img src="../../_images/tikz-f1dc661ffdfae61994e687ead47300e90053a360.png" alt="%% axes
+\draw[-&gt;] (-.5,0)--(4.75,0) node[below right]{$h$};
+\draw[-&gt;] (2,-.25)--(2,3.75) node[left]{$F_H(h)$};
+
+%% the CDF
+\begin{scope}[very thick]
+%% \draw plot[id=gaussian-cdf,domain={-.5:4.75}] function{3*0.5*(1+erf((x-2)/((2.0/3.0)*sqrt(2))))};
+\draw plot file {%(wd)s/teaching/probability_guide/gaussian-cdf.table};
+\end{scope}
+
+%% the bounds
+\begin{scope}[dashed]
+\draw (-.5,3)--(4.25,3);
+\draw (-.5,1.5)--(4.25,1.5);
+\draw (4,3.25)--(4,-.25);
+\draw (0,3.25)--(0,-.25);
+\end{scope}
+
+%% y-axis
+\draw (-.5,3) node[left]{1};
+\draw (-.5,1.5) node[left]{0.5};
+\draw (-.5,0) node[left]{0};
+
+%% x-axis2
+\draw (0,-.5) node{148cm};
+\draw (2,-.5) node{163cm};
+\draw (4,-.5) node{178cm};" /></p>
+<p class="caption">The CDF of measured heights for women in the U.K.</p></div><p>Notice that it’s pretty much the same shape as the Gaussian. In fact we can stretch and scale the Gaussian CDF to fit
+the data:</p>
+<div class="math">
+\[F_H(h) = F_G\left( \frac{h - 163\mbox{cm}}{5\mbox{cm}} \right).\]</div>
+<p>We can generalise this stretching and scaling to fit a Gaussian random variable centred on <span class="math">\(\mu\)</span> and with around
+2/3 of the observed values within <span class="math">\(\sigma\)</span> of <span class="math">\(\mu\)</span>. Let’s call this random variable <span class="math">\(X_g\)</span>. We can
+write down the CDF for <span class="math">\(X_g\)</span> in terms of a stretched version of <span class="math">\(F_G\)</span>:</p>
+<div class="math">
+\[\boxed{ F_{X_g}(x;\mu,\sigma) = F_G\left( \frac{x - \mu}{\sigma} \right) }\]</div>
+<p>We term <span class="math">\(\mu\)</span> the <em>mean</em> and <span class="math">\(\sigma\)</span> the <em>standard deviation</em>. We’ll return to these later and define them
+properly but for now just think of them as knobs to control the shape of the Gaussian CDF. The random variable
+<span class="math">\(G'\)</span> is still Gaussian, it’s just been stretched and scaled. We differentiate a Gaussian random variable with
+<span class="math">\(\mu = 0\)</span> and <span class="math">\(\sigma = 1\)</span> (i.e.&nbsp;<span class="math">\(G\)</span>) by calling it the <em>standard</em> Gaussian.</p>
+<p>We call these knobs <em>parameters</em> and we differentiate them from random variable values by putting them after a ‘;’ in
+the function arguments.</p>
+</div>
+</div>
+<div class="section" id="the-probability-density-function">
+<h2>The Probability Density Function<a class="headerlink" href="#the-probability-density-function" title="Permalink to this headline">¶</a></h2>
+<div class="math">
+\[\boxed{
+f_\blacklozenge(\lozenge) = \frac{d}{d \lozenge} F_\blacklozenge(\lozenge)
+\quad \Leftrightarrow \quad
+F_\blacklozenge(\lozenge) = \int_{-\infty}^\lozenge f_\blacklozenge(\heartsuit) \, \mbox{d}\heartsuit
+}\]</div>
+<div class="math">
+\[\boxed{ F_\blacklozenge(\lozenge) \triangleq P(\blacklozenge \le \lozenge) }\]</div>
+<div class="figure">
+<p><img src="../../_images/tikz-340584ab820e3931e5480bf91840aa092dd96373.png" alt="[-&gt;,node distance=4.8cm,thick]
+\node[state] (PDF) {PDF};
+\node[state] (CDF) [left of=PDF] {CDF};
+\node[state] (MGF) [right of=PDF] {MGF};
+
+\path (PDF) edge [bend left,below] node {$\displaystyle F_\blacklozenge(\lozenge) = \int_{-\infty}^\lozenge f_\blacklozenge(\heartsuit) \, \mbox{d} \heartsuit$} (CDF)
+            edge [bend left,above] node {$\displaystyle g_\blacklozenge(\spadesuit) \triangleq \mathcal{L}\left[f_\blacklozenge(\lozenge)\right]$}(MGF);
+\path (CDF) edge [bend left,above] node {$\displaystyle f_\blacklozenge(\lozenge) \triangleq \frac{d}{d\lozenge} F_\blacklozenge(\lozenge)$} (PDF);
+\path (MGF) edge [bend left,below] node {$\displaystyle f_\blacklozenge(\lozenge) = \mathcal{L}^{-1}\left[ g_\blacklozenge(\spadesuit) \right]$} (PDF);" /></p>
+</div><p><span class="math">\(\heartsuit\)</span> and <span class="math">\(\spadesuit\)</span> are <em>free variables</em>;
+<span class="math">\(\blacklozenge\)</span> is the <em>name</em> of a random variable;
+<span class="math">\(\lozenge\)</span> is a particular <em>value</em> of <span class="math">\(\blacklozenge\)</span>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The actual probability is more like 0.682.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../using-git/">Using <tt class="docutils literal docutils literal"><span class="pre">git</span></tt> for your work</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Rich Wareham.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
