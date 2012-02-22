@@ -23,7 +23,7 @@ Notation
 
 We'll start with a diagram showing a 2D cross-section or 'slice' through the Earth which includes the axis of rotation:
 
-.. figure:: earth-is-not-an-ellipsoid/ellipse-geometry.png
+.. figure:: earth-is-not-an-ellipsoid/ellipse-geometry.svg
     :align: center
     :alt: A figure showing the geometry of a slice through the Earth.
 
