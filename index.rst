@@ -16,13 +16,12 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
 
 .. toctree::
     :maxdepth: 1
-    :glob:
 
     github-pages
     gis-with-python
     earth-is-not-an-ellipsoid
 
-    teaching/*
+    teaching/linear_algebra
 
 Work in progress notes
 ----------------------
@@ -33,3 +32,4 @@ These notes are works in progress and may or may not be in a useful state.
     :maxdepth: 1
 
     using-git
+    teaching/probability_guide
