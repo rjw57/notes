@@ -155,7 +155,7 @@ the differential equation describes a sphere but at the equator, according to `W
 0.00346`. If the Earth were an ellipsoid the ratio of the radius at the equator to that at the pole would be
 around :math:`\sqrt{1.00346} \approx 1.0017` or 0.17% larger.
 
-Finally, if the Earth were to stop rotating so that :math:`\omega = 0`, you can see that :math:`\kappa_r,x = 0` and
+Finally, if the Earth were to stop rotating so that :math:`\omega = 0`, you can see that :math:`\kappa_{r,x} = 0` and
 hence the Earth would, eventually, become a perfect sphere.
 
 .. _`Wolfram Alpha`: http://www.wolframalpha.com/input/?i=%28equatorial+radius+of+earth+^+3%29+*+%28angular+velocity+of+earth%29^2+%2F+%28gravitational+constant+*+mass+of+the+Earth%29
