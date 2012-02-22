@@ -138,7 +138,7 @@ and one more re-arrangement gives our final form which can be compared to :eq:`e
     :label: phys-result
 
     \frac{n_y}{n_x}
-    = - \left[ 1 + \frac{\omega^2}{G m_e} x r^2 \right] \frac{x}{y}
+    = - \left[ 1 - \frac{\omega^2}{G m_e} x r^2 \right] \frac{x}{y}
     = - [ 1 - \kappa_{x,r} ] \frac{x}{y},
     \qquad\qquad
     \kappa_{x,r} = \frac{\omega^2}{G m_e} x r^2.
