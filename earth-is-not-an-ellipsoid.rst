@@ -139,7 +139,7 @@ and one more re-arrangement gives our final form which can be compared to :eq:`e
 
     \frac{n_y}{n_x}
     = - \left[ 1 + \frac{\omega^2}{G m_e} x r^2 \right] \frac{x}{y}
-    = - [ 1 + \kappa_{x,r} ] \frac{x}{y},
+    = - [ 1 - \kappa_{x,r} ] \frac{x}{y},
     \qquad\qquad
     \kappa_{x,r} = \frac{\omega^2}{G m_e} x r^2.
 
@@ -153,7 +153,7 @@ down an equation for the physical surface of an ideal Earth.
 The question does arise, however, exactly *how much* is the Earth not a sphere. At the North and South rotational poles
 the differential equation describes a sphere but at the equator, according to `Wolfram Alpha`_, :math:`\kappa_{x,r} =
 0.00346`. If the Earth were an ellipsoid the ratio of the radius at the equator to that at the pole would be
-around :math:`\sqrt{1.00346} \approx 1.0017` or 0.17% larger.
+around :math:`1 / \sqrt{1 - 0.00346} \approx 1.0017` or 0.17% larger.
 
 Finally, if the Earth were to stop rotating so that :math:`\omega = 0`, you can see that :math:`\kappa_{r,x} = 0` and
 hence the Earth would, eventually, become a perfect sphere.
