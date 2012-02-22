@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Earth is not an ellipsoid &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../" />
+    <link rel="prev" title="Using git for your work" href="../using-git/" />
+<link rel="stylesheet" href="../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>The Earth is not an ellipsoid</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="the-earth-is-not-an-ellipsoid">
+<h1>The Earth is <em>not</em> an ellipsoid<a class="headerlink" href="#the-earth-is-not-an-ellipsoid" title="Permalink to this headline">¶</a></h1>
+<p class="centered">
+<strong>FIXME: this is wrong. We end up with an extra term which should not be there.</strong></p><div class="figure align-center">
+<img alt="A figure showing the geometry of a slice through the Earth." src="../_images/ellipse-geometry.png" />
+</div>
+<p>It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider a
+2D &#8216;slice&#8217; through the earth which goes through its centre of mass. The figure above shows the geometry of that slice
+through the Earth. The centre of mass of the Earth is at <span class="math">\(O\)</span> and a point on the surface is at <span class="math">\((x, y)\)</span>. The
+y-axis is parallel to the line segment <span class="math">\(OB\)</span> which is also the rotational axis. The line segment <span class="math">\(OA\)</span> is
+perpendicular to <span class="math">\(OB\)</span> and is parallel to the x-axis.</p>
+<p>On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
+on the surface. The unit vectors <span class="math">\(\hat{e}_x\)</span> and <span class="math">\(\hat{e}_y\)</span> point, respectively, along the x- and y-axes.
+The unit vector <span class="math">\(\hat{e}_N\)</span> points along the surface of the Earth in a northerly direction, i.e. in the direction
+one must walk to reach <span class="math">\(B\)</span>.</p>
+<div class="section" id="assuming-the-earth-is-an-ellipsoid">
+<h2>Assuming the Earth is an ellipsoid<a class="headerlink" href="#assuming-the-earth-is-an-ellipsoid" title="Permalink to this headline">¶</a></h2>
+<p>Firstly, let&#8217;s proceed by assuming that the Earth <em>is</em> an ellipsoid. If so, our slice is an ellipse and we can label the
+major and minor radii <span class="math">\(a\)</span> and <span class="math">\(b\)</span>. Pythagoras tells us that</p>
+<div class="math">
+\[\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.\]</div>
+<p>If we differentiate with respect to <span class="math">\(x\)</span> we get</p>
+<div class="math">
+\[\frac{2x}{a^2} + \frac{2y}{b^2} \frac{dy}{dx} = 0
+\qquad \Rightarrow \qquad
+\frac{dy}{dx} = - \frac{b^2}{a^2} \frac{x}{y}.\]</div>
+<p>If we let <span class="math">\(\hat{e}_N = n_x \hat{e}_x + n_y \hat{e}_y\)</span> then it is clear that, at <span class="math">\(P\)</span>,</p>
+<div class="math" id="equation-ellipse">
+<span class="eqno">(1)</span>\[\frac{dy}{dx} = \frac{n_y}{n_x}
+\qquad \Rightarrow \qquad
+\frac{n_y}{n_x} = - \frac{b^2}{a^2} \frac{x}{y}.\]</div>
+<p>This is the relation that must be true for the Earth to be an ellipsoid: at all points on the surface <span class="math">\(n_y / n_x\)</span>
+must be proportional to <span class="math">\(x / y\)</span>. In the next section we&#8217;ll see if that is true when we consider the physical
+equations governing the shape of the Earth.</p>
+</div>
+<div class="section" id="the-physics-of-the-earth-s-surface">
+<h2>The physics of the Earth&#8217;s surface<a class="headerlink" href="#the-physics-of-the-earth-s-surface" title="Permalink to this headline">¶</a></h2>
+<p>Why does the Earth bulge in the middle? The traditional answer is that the centrifugal force &#8216;throws&#8217; the surface out
+more at the equator than at the poles. This is almost true. In fact it is better to think as the Earth&#8217;s surface as a
+liquid which &#8216;slips&#8217; over the globe until it finds an equilibrium point. Since we&#8217;re assuming the Earth is symmetric
+around its axis of rotation, this equilibrium point is only North-South. A point mass on the surface of the Earth will
+have the North-South centrifugal force exactly cancelled by the North-South force due to gravity. This must be true
+otherwise a ball on the ground would roll Northward or Southward.</p>
+<p>Let&#8217;s consider a point-mass at <span class="math">\(P\)</span> with mass <span class="math">\(m\)</span>. The centrifugal force will be directed along the
+<span class="math">\(\hat{e}_x\)</span> direction (i.e. away from the axis of rotation). If the Earth has angular velocity <span class="math">\(\omega\)</span> then
+elementary mechanics tells us that the centrifugal force is</p>
+<div class="math">
+\[f_c = \frac{m x^2 \omega^2}{r} \hat{e}_x.\]</div>
+<p>The force due to gravity is also simple to write down. It acts to pull the mass towards <span class="math">\(O\)</span> backwards along the
+radial direction <span class="math">\(\hat{e}_r\)</span>. If <span class="math">\(\theta\)</span> is the angle <span class="math">\(OP\)</span> makes to <span class="math">\(OA\)</span> then some elementary
+geometry tells us that</p>
+<div class="math">
+\[\hat{e}_r = \hat{e}_x \cos \theta + \hat{e}_y \sin \theta = \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y\]</div>
+<p>and so the force due to gravity is</p>
+<div class="math">
+\[f_g
+= - \frac{G m_e m}{r^2} \hat{e}_r
+= - \frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y \right]\]</div>
+<p>where <span class="math">\(m_e\)</span> is the mass of the Earth.</p>
+</div>
+<div class="section" id="calculating-the-shape-of-the-earth">
+<h2>Calculating the shape of the Earth<a class="headerlink" href="#calculating-the-shape-of-the-earth" title="Permalink to this headline">¶</a></h2>
+<p>Our physical condition is that the North-South gravity and centrifugal forces cancel and so</p>
+<div class="math">
+\[f_c \cdot \hat{e}_N + f_g \cdot \hat{e}_N = 0
+\qquad \Rightarrow \qquad
+\frac{m x^2 \omega^2}{r} \hat{e}_x \cdot \hat{e}_N -
+\frac{G m_e m}{r^2} \left[ \frac{x}{r} \hat{e}_x \cdot \hat{e}_N  + \frac{y}{r} \hat{e}_y \cdot \hat{e}_N \right]
+= 0.\]</div>
+<p>We can immediately simplify this equation by eliminating <span class="math">\(m\)</span> and multiplying by <span class="math">\(r\)</span> to get</p>
+<div class="math" id="equation-phys-cond">
+<span class="eqno">(2)</span>\[x^2 \omega^2 \ \hat{e}_x \cdot \hat{e}_N -
+G m_e \left[ \frac{x}{r^2} \hat{e}_x \cdot \hat{e}_N + \frac{y}{r^2} \hat{e}_y \cdot \hat{e}_N \right]
+= 0.\]</div>
+<p>Since <span class="math">\(r^{-2} = (x^2 + y^2)^{-1}\)</span>, via the chain rule, it must be that</p>
+<div class="math">
+\[\frac{d}{dx} r^{-2} = 2x \cdot -(x^2 + y^2)^{-2} = - 2 \frac{x}{r^4}\]</div>
+<p>and so, via the product rule,</p>
+<div class="math">
+\[\frac{d}{dx} \frac{x}{r^2} = \frac{1}{r^2} - 2 \frac{x^2}{r^4},
+\qquad
+\frac{d}{dx} \frac{y}{r^2} = - 2 \frac{xy}{r^4}.\]</div>
+<p>We can now differentiate both sides of equation <a href="#equation-phys-cond">(2)</a> to get</p>
+<div class="math">
+\[2 x \omega^2 \hat{e}_x \cdot \hat{e}_N +
+G m_e \left[ 2 \frac{x^2}{r^4} - \frac{1}{r^2} \right] \hat{e}_x \cdot \hat{e}_N  +
+G m_e \left[ 2 \frac{xy}{r^4} \right] \hat{e}_x \cdot \hat{e}_N  = 0.\]</div>
+<p>Again, we can simplify by eliminating a factor of <span class="math">\(2x / r^2\)</span>, collecting like terms and remembering our definition
+of <span class="math">\(n_x = \hat{e}_x \cdot \hat{e}_N\)</span> and <span class="math">\(n_y = \hat{e}_x \cdot \hat{e}_N\)</span>:</p>
+<div class="math">
+\[G m_e \left[ \frac{y}{r^2} \right] n_y =
+\left( G m_e \left[ \frac{1}{2x} - \frac{x}{r^2} \right] - r^2 \omega^2 \right) n_x.\]</div>
+<p>If we rearrange to get an expression for <span class="math">\(n_y / n_x\)</span> we get</p>
+<div class="math">
+\[\frac{n_y}{n_x} =
+- \frac{x}{y}
++ \frac{r^2}{2xy}
+- \frac{r^4 \omega^2}{G m_e} \frac{1}{y}.\]</div>
+<p>Which most certainly doesn&#8217;t match equation <a href="#equation-ellipse">(1)</a> which holds for an elliptical slice. In fact this differential
+equation has no analytic solution.</p>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ve shown that the shape of a slice through the Earth containing the axis of rotation is not in any way elliptical.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Rich Wareham.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

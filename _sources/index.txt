@@ -29,3 +29,4 @@ These notes are works in progress and may or may not be in a useful state.
     :maxdepth: 1
 
     using-git
+    earth-is-not-an-ellipsoid
