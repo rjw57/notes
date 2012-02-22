@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Notes on Linear Algebra given to my students &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="next" title="Using git for your work" href="../../using-git/" />
+    <link rel="prev" title="The Earth is not an ellipsoid" href="../../earth-is-not-an-ellipsoid/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>Notes on Linear Algebra given to my students</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../earth-is-not-an-ellipsoid/">The Earth is <em>not</em> an ellipsoid</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="notes-on-linear-algebra-given-to-my-students">
+<h1>Notes on Linear Algebra given to my students<a class="headerlink" href="#notes-on-linear-algebra-given-to-my-students" title="Permalink to this headline">¶</a></h1>
+<p>These are some notes on Linear Algebra which I prepared for a group of students I was teaching. They are in no way
+complete but they aim to clarify some common misconceptions and provide a solid basis for further study.</p>
+<div class="section" id="matrix-vector-multiplication">
+<h2>Matrix vector multiplication<a class="headerlink" href="#matrix-vector-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>I find it confusing to think about vectors and matrices as seas of numbers. Instead I find it simpler, and more
+geometrically intuitive, to see them as stacked sets of row or column vectors. This is the approach I’ll use in these
+notes and is also one I suggest you attempt to master.  It can often reduce a linear algebra proof to a few lines.</p>
+<div class="section" id="left-multiplication">
+<h3>Left-multiplication<a class="headerlink" href="#left-multiplication" title="Permalink to this headline">¶</a></h3>
+<p>A <span class="math">\(1 \times N\)</span> vector, <span class="math">\(\vec{x}\)</span>, multiplied by a <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, gives a <span class="math">\(1
+\times M\)</span> vector which is the dot product of <span class="math">\(\vec{x}\)</span> with the <em>columns</em> of <span class="math">\(A\)</span>.</p>
+<div class="math" id="equation-left-multiplication">
+<span class="eqno">(1)</span>\[\newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
+\newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}\]\[\begin{split}\begin{array}{cccc}
+\left[
+\begin{array}{cccc}
+\hmatrixrule &amp; \vec{x} &amp; \hmatrixrule
+\end{array} \right] &amp;
+\left[
+\begin{array}{cccc}
+\vmatrixrule &amp; \vmatrixrule &amp;  &amp; \vmatrixrule \\
+\vec{a}_1 &amp; \vec{a}_2 &amp; \cdots &amp; \vec{a}_M \\
+\vmatrixrule &amp; \vmatrixrule &amp;  &amp; \vmatrixrule
+\end{array}
+\right] &amp;
+= &amp;
+\left[ \begin{array}{cccc}
+\vec{x} \cdot \vec{a}_1 &amp; \vec{x} \cdot \vec{a}_2 &amp; \cdots &amp; \vec{x} \cdot \vec{a}_M
+\end{array} \right]
+\\
+\Space{0pt}{2em}{0pt}
+1 \times N &amp; N \times M &amp; \rightarrow &amp; 1 \times M
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="right-multiplication">
+<h3>Right-multiplication<a class="headerlink" href="#right-multiplication" title="Permalink to this headline">¶</a></h3>
+<p>A <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, multiplied by a <span class="math">\(M \times 1\)</span> vector, <span class="math">\(\vec{x}\)</span>, gives a <span class="math">\(N
+\times 1\)</span> vector which is the dot product of <span class="math">\(\vec{x}\)</span> with the <em>rows</em> of <span class="math">\(A\)</span>.</p>
+<div class="math" id="equation-right-multiplication">
+<span class="eqno">(2)</span>\[\begin{split}\begin{array}{cccc}
+\left[
+\begin{array}{ccc}
+\hmatrixrule &amp; \vec{a}_1 &amp; \hmatrixrule \\
+\hmatrixrule &amp; \vec{a}_2 &amp; \hmatrixrule \\
+&amp; \vdots &amp; \\
+\hmatrixrule &amp; \vec{a}_N &amp; \hmatrixrule
+\end{array}
+\right] &amp;
+\left[
+\begin{array}{c}
+\vmatrixrule \\
+\vec{x} \\
+\vmatrixrule
+\end{array}
+\right] &amp;
+= &amp;
+\left[
+\begin{array}{c}
+\vec{a}_1 \cdot \vec{x} \\ \vec{a}_2 \cdot \vec{x} \\ \vdots \\ \vec{a}_N \cdot \vec{x}
+\end{array}
+\right]
+\\
+\Space{0pt}{2em}{0pt} N \times M &amp; M \times 1 &amp; \rightarrow &amp; N \times 1
+\end{array}\end{split}\]</div>
+</div>
+<div class="section" id="the-four-fundamental-subspaces">
+<h3>The four fundamental subspaces<a class="headerlink" href="#the-four-fundamental-subspaces" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-row-space">
+<h4>The row space<a class="headerlink" href="#the-row-space" title="Permalink to this headline">¶</a></h4>
+<p>The row space of a <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, is the <span class="math">\(M\)</span>-component space spanned by the <em>rows</em> of
+<span class="math">\(A\)</span>. If <span class="math">\(\vec{x}\)</span> is in the row space of <span class="math">\(A\)</span> then at least one of <span class="math">\(\vec{x} \cdot \vec{a}_i\)</span>,
+where <span class="math">\(\vec{a}_i\)</span> is a row of <span class="math">\(A\)</span>, <em>must</em> be non-zero by definition. The <em>dimension</em> of the row space is
+equal to the rank of the matrix.</p>
+</div>
+<div class="section" id="the-null-space">
+<h4>The null space<a class="headerlink" href="#the-null-space" title="Permalink to this headline">¶</a></h4>
+<p>The null space of a <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, is the <span class="math">\(M\)</span>-component space of vectors, <span class="math">\(\vec{x}\)</span>,
+for which <span class="math">\(A\vec{x} = \vec{0}\)</span>. Looking at our definition of the row space, it is clear that if a vector is in the
+row space it <em>cannot</em> be in the null space and <em>vice versa</em>. Therefore the row space is the <em>compliment</em> of the row
+space.</p>
+</div>
+<div class="section" id="the-column-space">
+<h4>The column space<a class="headerlink" href="#the-column-space" title="Permalink to this headline">¶</a></h4>
+<p>The column space of a <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, is the <span class="math">\(N\)</span>-component space spanned by the <em>columns</em> of
+<span class="math">\(A\)</span>. If <span class="math">\(\vec{x}\)</span> is in the column space of <span class="math">\(A\)</span> then at least one of <span class="math">\(\vec{x} \cdot \vec{a}_i\)</span>,
+where <span class="math">\(\vec{a}_i\)</span> is a column of <span class="math">\(A\)</span>, <em>must</em> be non-zero by definition. The <em>dimension</em> of the column space
+is equal to the rank of the matrix.</p>
+</div>
+<div class="section" id="the-left-null-space">
+<h4>The left null space<a class="headerlink" href="#the-left-null-space" title="Permalink to this headline">¶</a></h4>
+<p>The left null space of a <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>, is the <span class="math">\(N\)</span>-component space of vectors,
+<span class="math">\(\vec{x}\)</span>, for which <span class="math">\(\vec{x}^TA = \vec{0}^T\)</span>. Looking at our definition of the column space, it is clear
+that if a vector is in the column space it <em>cannot</em> be in the left null space and <em>vice versa</em>.  Therefore the column
+space is the <em>compliment</em> of the left null space.</p>
+</div>
+<div class="section" id="the-rank-of-a-matrix">
+<h4>The rank of a matrix<a class="headerlink" href="#the-rank-of-a-matrix" title="Permalink to this headline">¶</a></h4>
+<p>The rank of a matrix is an important concept. As we have seen, if a matrix is not <em>full-rank</em> then the left-null space
+and null space must be non-zero and so some information from a vector will always be ‘thrown away’ (or set to zero) by
+the matrix.</p>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-matrix-multiplication">
+<h2>Matrix-matrix multiplication<a class="headerlink" href="#matrix-matrix-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>Like matrix-vector multiplication, it is best to think of this as a set of row-wise and column-wise operations.</p>
+<div class="math">
+\[\begin{split}\begin{array}{cccc}
+\left[
+\begin{array}{ccc}
+\hmatrixrule &amp; \vec{a}_1 &amp; \hmatrixrule \\
+\hmatrixrule &amp; \vec{a}_2 &amp; \hmatrixrule \\
+&amp; \vdots &amp; \\
+\hmatrixrule &amp; \vec{a}_N &amp; \hmatrixrule
+\end{array}
+\right] &amp;
+\left[
+\begin{array}{cccc}
+\vmatrixrule &amp; \vmatrixrule &amp;  &amp; \vmatrixrule \\
+\vec{b}_1 &amp; \vec{b}_2 &amp; \cdots &amp; \vec{b}_M \\
+\vmatrixrule &amp; \vmatrixrule &amp;  &amp; \vmatrixrule
+\end{array}
+\right] &amp;
+= &amp;
+\left[
+\begin{array}{cccc}
+\vec{a}_1 \cdot \vec{b}_1 &amp; \vec{a}_1 \cdot \vec{b}_2 &amp; \cdots &amp; \vec{a}_1 \cdot \vec{b}_M \\
+\vec{a}_2 \cdot \vec{b}_1 &amp; \vec{a}_2 \cdot \vec{b}_2 &amp; \cdots &amp; \vec{a}_2 \cdot \vec{b}_M \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\vec{a}_N \cdot \vec{b}_1 &amp; \vec{a}_N \cdot \vec{b}_2 &amp; \cdots &amp; \vec{a}_N \cdot \vec{b}_M
+\end{array}
+\right]
+\\
+\Space{0pt}{2em}{0pt} N \times L &amp; L \times M &amp; \rightarrow &amp; N \times M
+\end{array}\end{split}\]</div>
+<div class="section" id="orthonormal-matrices">
+<h3>Orthonormal matrices<a class="headerlink" href="#orthonormal-matrices" title="Permalink to this headline">¶</a></h3>
+<p>An orthonormal matrix is one where all columns are independent and have unit length. If <span class="math">\(\{ \vec{a}_i : i \in 1
+\dots M \}\)</span> are the columns of an orthonormal matrix then it follows from the definition that</p>
+<div class="math">
+\[\vec{a}_i \cdot \vec{a}_i = 1, \quad \vec{a}_i \cdot \vec{a}_j = 0 \qquad
+\forall \  i, j \in 1 \dots M.\]</div>
+<p>By using this result and looking at our representation of matrix-matrix multiplication above it should be clear that, if
+<span class="math">\(Q\)</span> is an orthonormal matrix, <span class="math">\(Q^TQ = I\)</span> and hence the transpose of an orthonormal matrix is its
+inverse.</p>
+<div class="section" id="the-rows-of">
+<h4>The rows of <span class="math">\(Q\)</span><a class="headerlink" href="#the-rows-of" title="Permalink to this headline">¶</a></h4>
+<p>Further, if <span class="math">\(Q^T\)</span> is the inverse of <span class="math">\(Q\)</span>, then <span class="math">\(QQ^T = I\)</span> and hence <span class="math">\(Q^T\)</span> must itself be
+orthonormal.  Since, by definition of an orthonormal matrix, the columns of <span class="math">\(Q^T\)</span> are independent and have unit
+length then it follows that the rows of an orthonormal matrix are <em>also</em> independent and unit length.</p>
+</div>
+<div class="section" id="the-geometric-interpretation-of-orthonormal-matrices">
+<h4>The geometric interpretation of orthonormal matrices<a class="headerlink" href="#the-geometric-interpretation-of-orthonormal-matrices" title="Permalink to this headline">¶</a></h4>
+<p>The geometric interpretation of the action of an orthonormal matrix can easily be seen by considering the actions of an
+<span class="math">\(N \times M\)</span> orthonormal matrix <span class="math">\(Q\)</span> with <em>rows</em> <span class="math">\(\{ \vec{q}_i : i \in 1 \dots N \}\)</span> on a <span class="math">\(M
+\times 1\)</span> vector <span class="math">\(\vec{x}\)</span>. Each component of <span class="math">\(Q\vec{x}\)</span> is <span class="math">\(\vec{x}\)</span> <em>resolved</em> onto one of the rows
+of <span class="math">\(Q\)</span>. Since the rows of <span class="math">\(Q\)</span> are independent and have unit length, this results in a change of co-ordinates
+for <span class="math">\(\vec{x}\)</span>, resolving it onto the basis formed by the rows of <span class="math">\(Q\)</span>. In summary, an <span class="math">\(N \times M\)</span>
+orthonormal matrix resolved a <span class="math">\(M\)</span>-component vector into a <span class="math">\(N\)</span>-dimensional subspace and a square
+orthonormal matrix transforms from one co-ordinate system to another without a loss of information. This last statement
+also justifies our implicit assertion above that all square orthonormal matrices are invertible.</p>
+</div>
+</div>
+</div>
+<div class="section" id="eigenvalues-and-eigenvectors">
+<h2>Eigenvalues and eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this headline">¶</a></h2>
+<p>An <em>eigenvector</em>, <span class="math">\(\vec{v}\)</span>, of some square matrix, <span class="math">\(A\)</span>, is defined to be any vector for which <span class="math">\(A
+\vec{v} = \lambda \vec{v}\)</span>. By <em>convention</em> we choose that eigenvectors have unit length although we are in general free
+to choose the length of eigenvectors. The value <span class="math">\(\lambda\)</span> is an <em>eigenvalue</em> of the matrix, <span class="math">\(A\)</span>. We do not
+consider the vector <span class="math">\(\vec{0}\)</span> to be an eigenvector of a matrix since it trivially satisfies the requirements for
+all square matrices.</p>
+<p>A <em>left-eigenvector</em> of some square matrix, <span class="math">\(A\)</span>, is a vector, <span class="math">\(\vec{v}\)</span>, which satisfies <span class="math">\(\vec{v}^T A
+= \lambda \vec{v}^T\)</span>. It is obvious that the eigenvectors of a matrix are the left-eigenvectors of its transpose.</p>
+<div class="section" id="eigenvectors-of-symmetric-matrices">
+<h3>Eigenvectors of symmetric matrices<a class="headerlink" href="#eigenvectors-of-symmetric-matrices" title="Permalink to this headline">¶</a></h3>
+<p>In general eigenvectors need not be orthogonal to each other but there is a special case where they are. Suppose the
+square matrix, <span class="math">\(A\)</span>, is symmetric so that <span class="math">\(A^T = A\)</span>. In this case the left-eigenvectors and left-eigenvalues
+are the same as the eigenvectors and eigenvalues.</p>
+<p>Suppose two eigenvectors, <span class="math">\(\vec{e}_1\)</span> and <span class="math">\(\vec{e}_2\)</span> with associated eigenvalues <span class="math">\(\lambda_1\)</span> and
+<span class="math">\(\lambda_2\)</span>, were non-orthogonal. In which case, we could represent one as some offset from the other:
+<span class="math">\(\vec{e}_2 = \alpha \vec{e}_1 + \vec{\Delta}\)</span> where <span class="math">\(\vec{e}_1 \cdot \vec{\Delta} = 0\)</span>. Now consider
+multiplying <span class="math">\(A\)</span> on the right by <span class="math">\(\vec{e}_2\)</span>:</p>
+<div class="math">
+\[A \vec{e}_2 = \lambda_2 \vec{e}_2
+= \lambda_2 \alpha \vec{e}_1 + \lambda_2 \vec{\Delta}
+\qquad\text{and}\qquad
+A \vec{e}_2 = A \vec{e}_1 + A \vec{\Delta}
+= \lambda_1 \vec{e}_1 + A \vec{\Delta}.\]</div>
+<p>By this result and the orthogonality of <span class="math">\(\vec{e}_1\)</span> and <span class="math">\(\vec{\Delta}\)</span> it follows that <span class="math">\(A\vec{\Delta}
+= \lambda_2 \vec{\Delta}\)</span>. Hence, by definition, <span class="math">\(\vec{e}_2 = \vec{\Delta}\)</span> and is orthogonal to
+<span class="math">\(\vec{e}_1\)</span>.</p>
+<p>This is a sketch proof and is non-rigorous but provides a justification for the claim that the eigenvectors of a
+symmetric matrix are orthogonal. A rigorous proof adds the condition that the matrix be of a form known as positive
+semi-definite but this is beyond the scope of the course.</p>
+</div>
+<div class="section" id="relation-to-the-fundamental-subspaces-of-a-matrix">
+<h3>Relation to the fundamental subspaces of a matrix<a class="headerlink" href="#relation-to-the-fundamental-subspaces-of-a-matrix" title="Permalink to this headline">¶</a></h3>
+<p>Looking at the definition of right-multiplication above it should be clear that if a <em>non-zero</em> vector <span class="math">\(\vec{b}\)</span>
+can be expressed via another vector <span class="math">\(\vec{x}\)</span> applied to <span class="math">\(A\)</span> so that <span class="math">\(A\vec{x} = \vec{b}\)</span> then
+<span class="math">\(\vec{x}\)</span> is in the row space of the matrix. In other words, <span class="math">\(\vec{x}\)</span> is non-orthogonal to at least one row
+of <span class="math">\(A\)</span> since <span class="math">\(\vec{b}\)</span> has at least one non-zero component.a By a similar argument, if <span class="math">\(\vec{x}^T A =
+\vec{b}^T\)</span> and <span class="math">\(\vec{b}\)</span> is non-zero, then <span class="math">\(\vec{x}\)</span> must be in the <em>column space</em> of <span class="math">\(A\)</span>.</p>
+<p>It follows that all eigenvectors of a square matrix must be in the row space and all left-eigenvectors of a square
+matrix must be in the column space. Since, for a symmetric matrix, the left-eigenvectors are the same as the
+eigenvectors, for a symmetric matrix, the eigenvectors must lie in <em>both</em> the column space and the row space.</p>
+<p>As the eigenvectors for a symmetric matrix must be orthogonal and are by convention unit length, it may be no surprise
+to you that the eigenvectors of a symmetric matrix form an orthonormal basis for the row and column spaces. It is
+instructive to attempt to show this. It may be done quite simply using a similar method to that used to show the
+orthogonality of a symmetric matrix’s eigenvectors above: consider some vector composed of multiples of the eigenvectors
+and a remainder term orthogonal to all eigenvectors and then right-multiply the matrix by it.</p>
+<p>Since the eigenvectors of a symmetric basis span the column and row spaces and since they are orthonormal, it should be
+cleat that the number of eigenvectors for a symmetric matrix equals its rank.</p>
+</div>
+<div class="section" id="the-eigenvector-decomposition">
+<h3>The eigenvector decomposition<a class="headerlink" href="#the-eigenvector-decomposition" title="Permalink to this headline">¶</a></h3>
+<p>Consider some <span class="math">\(N \times M\)</span> matrix, <span class="math">\(A\)</span>. We can form two symmetric matrices from it: the <span class="math">\(N \times N\)</span>
+matrix <span class="math">\(AA^T\)</span> and the <span class="math">\(M \times M\)</span> matrix <span class="math">\(A^TA\)</span>. If <span class="math">\(V\)</span> is a matrix whose columns are
+eigenvectors of <span class="math">\(A^TA\)</span> and <span class="math">\(U\)</span> is a matrix whose columns are eigenvectors of <span class="math">\(AA^T\)</span> then, by
+definition,</p>
+<div class="math">
+\[A^TA V = V \Lambda_V, \qquad AA^T U = U \Lambda_U,\]</div>
+<p>where <span class="math">\(\Lambda_V\)</span> and <span class="math">\(\Lambda_U\)</span> are matrices whose diagonal elements containing the appropriate
+eigenvalues. The size of <span class="math">\(\Lambda_U\)</span> and <span class="math">\(\Lambda_V\)</span> depend on the <em>ranks</em> of <span class="math">\(AA^T\)</span> and <span class="math">\(A^TA\)</span>
+respectively. If you look up the properties of ranks, you’ll discover that the ranks of <span class="math">\(A^TA\)</span> and <span class="math">\(AA^T\)</span>
+are equal to the rank of <span class="math">\(A\)</span>. Let’s call it <span class="math">\(R\)</span>. In this case, therefore, the matrices <span class="math">\(\Lambda_U\)</span> and
+<span class="math">\(\Lambda_V\)</span> are <span class="math">\(R \times R\)</span>, where <span class="math">\(R = \mbox{rank}(A)\)</span>.</p>
+<p>Since we know that <span class="math">\(V\)</span> and <span class="math">\(U\)</span> are orthonormal, their
+inverses must be their own transpose and so we can rearrange the above
+as follows:</p>
+<div class="math">
+\[A^TA = V \Lambda_V V^T, \qquad AA^T = U \Lambda_U U^T.\]</div>
+<p>This is called the <em>eigenvector decomposition</em> of <span class="math">\(A\)</span>.</p>
+<div class="section" id="eigenvalues-of-and">
+<h4>Eigenvalues of <span class="math">\(AA^T\)</span> and <span class="math">\(A^TA\)</span><a class="headerlink" href="#eigenvalues-of-and" title="Permalink to this headline">¶</a></h4>
+<p>Imagine, for the moment, that <span class="math">\(\vec{v}\)</span> is an eigenvector of <span class="math">\(A^TA\)</span> with associated eigenvalue
+<span class="math">\(\lambda_v\)</span>. Then, by the definition,</p>
+<div class="math">
+\[A^TA\vec{v} = \lambda_v \vec{v}
+\quad \Rightarrow \quad
+AA^TA\vec{v} = \lambda_v A\vec{v}.\]</div>
+<p>Hence if <span class="math">\(\vec{v}\)</span> is an eigenvector or <span class="math">\(A^TA\)</span>, then <span class="math">\(A\vec{v}\)</span> is an eigenvector of <span class="math">\(AA^T\)</span> with
+the same eigenvalue. Similarly, if <span class="math">\(\vec{u}\)</span> is an eigenvector of <span class="math">\(AA^T\)</span> then <span class="math">\(A^T\vec{u}\)</span> is an
+eigenvector of <span class="math">\(A^TA\)</span> with the same eigenvalue. In summary, the eigenvalues of <span class="math">\(A^TA\)</span> and <span class="math">\(AA^T\)</span> are
+identical.</p>
+<p>Because of this, we can always <em>choose</em> the ordering of <span class="math">\(U\)</span> and <span class="math">\(V\)</span> so as to make the diagonal terms of
+<span class="math">\(\Lambda_U\)</span> and <span class="math">\(\Lambda_V\)</span> identical and hence make both matrices equal to some diagonal matrix
+<span class="math">\(\Lambda\)</span>. The way this is done is that, conventionally, the columns of <span class="math">\(U\)</span> and <span class="math">\(V\)</span> are ordered by
+decreasing eigenvalue.</p>
+<p>In summary, when the columns of <span class="math">\(U\)</span> and <span class="math">\(V\)</span> are arranged in decreasing order of eigenvalue, we may form two
+related eigenvector decompositions of <span class="math">\(A\)</span>:</p>
+<div class="math">
+\[A^TA = V \Lambda V^T, \qquad AA^T = U \Lambda U^T.\]</div>
+<p>Since each eigenvector of <span class="math">\(AA^T\)</span> maps to an eigenvector of <span class="math">\(A^TA\)</span> and vice-versa, we can be confident that
+the ranks of <span class="math">\(AA^T\)</span> and <span class="math">\(A^TA\)</span> are identical. This is yet more justification of the assertion about the
+sizes of <span class="math">\(\Lambda_U\)</span>
+and <span class="math">\(\Lambda_V\)</span> above.</p>
+</div>
+</div>
+<div class="section" id="the-singular-value-decomposition">
+<h3>The singular value decomposition<a class="headerlink" href="#the-singular-value-decomposition" title="Permalink to this headline">¶</a></h3>
+<p>For the moment, suppose that there is some decomposition of an <span class="math">\(N \times M\)</span> matrix <span class="math">\(A\)</span> into a <span class="math">\(N
+\times R\)</span> orthogonal matrix <span class="math">\(U\)</span>, a <span class="math">\(M \times R\)</span> matrix <span class="math">\(V\)</span> and some <span class="math">\(R \times R\)</span> matrix
+<span class="math">\(\Sigma\)</span> whose only non-zero terms are on the diagonal:</p>
+<div class="math">
+\[A = U \Sigma V^T.\]</div>
+<p>Consider the form of the matrices <span class="math">\(A^TA\)</span> and <span class="math">\(AA^T\)</span>:</p>
+<div class="math">
+\[A^TA = V \Sigma^T U U^T \Sigma V^T = V \Sigma^T \Sigma V^T, \qquad
+AA^T = U \Sigma V^T V \Sigma^T U = U \Sigma \Sigma^T U^T.\]</div>
+<p>If we make the observation that we may set <span class="math">\(\Sigma^T \Sigma = \Lambda_V\)</span> and <span class="math">\(\Sigma \Sigma^T = \Lambda_U\)</span>
+then we have exactly the eigenvector decomposition. Further, since <span class="math">\(\Lambda_U = \Lambda_V = \Lambda\)</span>, then we can
+see that <span class="math">\(\Sigma\)</span> is the <span class="math">\(R \times R\)</span> diagonal matrix of eigenvalue square-roots.</p>
+<p>The decomposition <span class="math">\(A = U \Sigma V^T\)</span> is called the <em>singular value decomposition</em> (SVD). The columns of the
+matrices <span class="math">\(U\)</span> and <span class="math">\(V\)</span> are the eigenvectors of <span class="math">\(AA^T\)</span> and <span class="math">\(A^TA\)</span> respectively ordered by
+decreasing eigenvalue. The non-zero elements of <span class="math">\(\Sigma\)</span> are called the singular values and the number of
+singular values is equal to the rank of <span class="math">\(A\)</span>.</p>
+<div class="section" id="the-geometric-interpretation-of-the-svd">
+<h4>The geometric interpretation of the SVD<a class="headerlink" href="#the-geometric-interpretation-of-the-svd" title="Permalink to this headline">¶</a></h4>
+<p>We can interpret the SVD of a <span class="math">\(N \times M\)</span> matrix geometrically.  The action of the first orthonormal matrix
+<span class="math">\(V^T\)</span> is to transform a <span class="math">\(M\)</span>-component vector into a <span class="math">\(R\)</span>-dimensional subspace.  This will lose
+information if <span class="math">\(R &lt; M\)</span>. In this subspace, the action of the matrix <span class="math">\(A\)</span> is to scale along each of the basis
+vectors by the values of the diagonal of <span class="math">\(\Sigma\)</span>. Finally, the orthonormal matrix <span class="math">\(U\)</span> transforms from the
+<span class="math">\(R\)</span>-dimensional subspace into the <span class="math">\(U\)</span>-component space we expect the result to be in. This transform cannot
+invent new information; the result of applying <span class="math">\(U\)</span> is still <span class="math">\(R\)</span>-dimensional, it is just a
+<span class="math">\(R\)</span>-dimensional subspace embedded in a <span class="math">\(N\)</span>-dimensional space.</p>
+<p>It is this ‘necking’ into a <span class="math">\(R\)</span>-dimensional space that shows up if the matrix <span class="math">\(A\)</span> is invertible in and of
+itself. If <span class="math">\(R &lt; M\)</span> information will be lost and so the matrix could never be invertible.</p>
+</div>
+<div class="section" id="matrix-approximation">
+<h4>Matrix approximation<a class="headerlink" href="#matrix-approximation" title="Permalink to this headline">¶</a></h4>
+<p>The SVD may be used to approximate a matrix. Instead of retaining the full <span class="math">\(R\)</span> diagonal entries of <span class="math">\(\Sigma\)</span>,
+we may truncate the matrix and keep only the first <span class="math">\(R' &lt; R\)</span> entries of <span class="math">\(\Sigma\)</span> and the first <span class="math">\(R'\)</span>
+columns of <span class="math">\(U\)</span> and <span class="math">\(V\)</span>. The following figures give an example of this so-called <em>rank reduction</em> applied to a
+matrix representing an image. Under each image is shown the number of singular values (s.v.s) retained and the
+corresponding amount of storage required for the image as a fraction of the original.  The SVD can be used as a naïve
+form of image compression; we managed to get to around 16% of the original image’s storage by setting <span class="math">\(R' = 0.1
+R\)</span>.</p>
+<div class="figure align-center">
+<img alt="teaching/svd_original.*" src="teaching/svd_original.*" />
+<p class="caption">Original (100% storage)</p>
+</div>
+<div class="figure align-center">
+<img alt="teaching/svd_25.*" src="teaching/svd_25.*" />
+<p class="caption">25% of s.v.s (41% storage)</p>
+</div>
+<div class="figure align-center">
+<img alt="teaching/svd_10.*" src="teaching/svd_10.*" />
+<p class="caption">10% of s.v.s (16% storage)</p>
+</div>
+<div class="figure align-center">
+<img alt="teaching/svd_5.*" src="teaching/svd_5.*" />
+<p class="caption">5% of s.v.s (8% storage)</p>
+</div>
+<div class="figure align-center">
+<img alt="teaching/svd_1.*" src="teaching/svd_1.*" />
+<p class="caption">1% of s.v.s (2% storage)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../earth-is-not-an-ellipsoid/">The Earth is <em>not</em> an ellipsoid</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../using-git/">Using <tt class="docutils literal"><span class="pre">git</span></tt> for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2012, Rich Wareham.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

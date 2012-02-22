@@ -16,10 +16,13 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
 
 .. toctree::
     :maxdepth: 1
+    :glob:
 
     github-pages
     gis-with-python
     earth-is-not-an-ellipsoid
+
+    teaching/*
 
 Work in progress notes
 ----------------------
