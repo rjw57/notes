@@ -18,7 +18,6 @@ A :math:`1 \times N` vector, :math:`\vec{x}`, multiplied by a :math:`N \times M`
 \times M` vector which is the dot product of :math:`\vec{x}` with the *columns* of :math:`A`.
 
 .. math::
-    :label: left-multiplication
 
     \newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
     \newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}
@@ -51,7 +50,6 @@ A :math:`N \times M` matrix, :math:`A`, multiplied by a :math:`M \times 1` vecto
 \times 1` vector which is the dot product of :math:`\vec{x}` with the *rows* of :math:`A`.
 
 .. math::
-    :label: right-multiplication
 
     \begin{array}{cccc}
     \left[
@@ -357,32 +355,32 @@ corresponding amount of storage required for the image as a fraction of the orig
 form of image compression; we managed to get to around 16% of the original image’s storage by setting :math:`R' = 0.1
 R`.
 
-.. figure:: svd_original.*
+.. figure:: linear_algebra/svd_original.*
     :align: center
 
     Original (100% storage)
 
-.. .. figure:: svd_50.*
+.. .. figure:: linear_algebra/svd_50.*
 ..     :align: center
 .. 
 ..     50% of s.v.s (82% storage)
 
-.. figure:: svd_25.*
+.. figure:: linear_algebra/svd_25.*
     :align: center
 
     25% of s.v.s (41% storage)
 
-.. figure:: svd_10.*
+.. figure:: linear_algebra/svd_10.*
     :align: center
 
     10% of s.v.s (16% storage)
 
-.. figure:: svd_5.*
+.. figure:: linear_algebra/svd_5.*
     :align: center
 
     5% of s.v.s (8% storage)
 
-.. figure:: svd_1.*
+.. figure:: linear_algebra/svd_1.*
     :align: center
 
     1% of s.v.s (2% storage)
