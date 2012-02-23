@@ -17,4 +17,8 @@ If you want to hack on these notes, you'll need the following things installed:
 
 - `Sphinx <http://sphinx.pocoo.org/>`_, version 1.1 or later for MathJax support
 
+- LaTeX + tikz/pgf (I use `TeXLive <http://www.tug.org/texlive/>`)
+
+- `ImageMagick <http://www.imagemagick.org/>`_ for converting tikz figures into PNG
+
 Run ``make`` to make the notes.
