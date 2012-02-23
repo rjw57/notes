@@ -28,18 +28,19 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 
     [semithick]
 
+    %%%% CONFIGURATION %%%%
+
     %% Define macros for our major and minor radii
-    \def\majorradius{3.5}
+    \def\majorradius{4}
     \def\minorradius{2}
 
     %% The angle from the x-axis for our point
-    \def\angle{40}
+    \def\angle{35}
 
     %% The horizontal half-width (i.e. radius) of the zoomed in figure
     \def\zoomhalfwidth{2}
 
-    %% The angle of the ground in the zoomed figure, 0 = vertical
-    \def\zoomangle{60}
+    %%%% START PLOTTING %%%%
 
     %% The ellipse centre, major and minor axes
     \coordinate (O) at (0, 0);
@@ -48,6 +49,13 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 
     %% Calculate the position of a point on the surface
     \coordinate (P) at ($(O) + (xy polar cs:angle=\angle, x radius=\majorradius, y radius=\minorradius)$);
+
+    %% Get the x and y co-ordinates of P relative to O
+    \draw ($(P) - (O)$); \pgfgetlastxy{\px}{\py}
+
+    %% Calculate the angle of the ground in the zoomed figure, 0 = vertical. This uses the very differential equation
+    for an ellipse derived below.
+    \pgfmathsetmacro{\zoomangle}{- 90 + atan2( -pow(\majorradius,2) * \py, pow(\minorradius,2) * \px )}
 
     %% Label origin and intersection
     \node [below left] at (O) {$O$};
@@ -62,7 +70,7 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 
     %% Draw the lines to P from the origin and a point projected onto the x- and y-axes
     \draw (O) -- node [above left] {$r$} (P);
-    \draw ($(O)!(P)!(A)$) -- node [right] {$y$} (P);
+    \draw ($(O)!(P)!(A)$) -- node [left] {$y$} (P);
     \draw ($(O)!(P)!(B)$) -- node [above] {$x$} (P);
 
     %% Draw arrow indicating detail progression
@@ -78,18 +86,24 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     \coordinate (ex) at (0.5*\zoomhalfwidth, 0);
     \coordinate (ey) at (0, 0.5*\zoomhalfwidth);
     \coordinate (eN) at (xy polar cs:angle=\zoomangle+90, radius=0.5*\zoomhalfwidth);
+    \coordinate (er) at (xy polar cs:angle=\angle, radius=0.5*\zoomhalfwidth);
 
-    %% Draw P and the surface
-    \fill (P) circle [radius=0.075] node [below left] {$P$};
+    %% Draw the surface
+    \begin{scope}[color=black!50!white]
     \draw ($(P) + (xy polar cs:angle=\zoomangle+90, radius=\zoomhalfwidth)$) -- (P);
     \draw ($(P) + (xy polar cs:angle=\zoomangle-90, radius=\zoomhalfwidth)$) -- (P);
+    \end{scope}
 
     %% Draw the co-ordinate frame
-    \begin{scope}[-stealth, very thick]
-    \draw (P) -- ++ (ex) node [right] {$\hat{e}_x$};
-    \draw (P) -- ++ (ey) node [above] {$\hat{e}_y$};
-    \draw (P) -- ++ (eN) node [above] {$\hat{e}_N$};
+    \begin{scope}[-stealth]
+    \draw (P) -- ++ (ex) node [pos=1.3] {$\hat{e}_x$};
+    \draw (P) -- ++ (ey) node [pos=1.3] {$\hat{e}_y$};
+    \draw (P) -- ++ (eN) node [left] {$\hat{e}_N$};
+    \draw (P) -- ++ (er) node [pos=1.3] {$\hat{e}_r$};
     \end{scope}
+
+    %% Draw P
+    \fill (P) circle [radius=0.075] node [below left] {$P$};
 
     \end{scope}
 
