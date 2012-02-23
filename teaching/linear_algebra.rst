@@ -1,5 +1,5 @@
-Notes on Linear Algebra given to my students
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Notes on Linear Algebra
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. These are specific latex and mathjax magic required to get some nice horizontal and vertical bars in matrices.
 
