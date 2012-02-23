@@ -117,7 +117,8 @@ segment :math:`OA` is perpendicular to :math:`OB` and is parallel to the x-axis.
 On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
 on the surface. The unit vectors :math:`\hat{e}_x` and :math:`\hat{e}_y` point, respectively, along the x- and y-axes.
 The unit vector :math:`\hat{e}_N` points along the surface of the Earth in a northerly direction, i.e. in the direction
-one must walk to reach :math:`B`.
+one must walk to reach :math:`B`. The vector :math:`\hat{e}_r` points along the line :math:`OP`. Note that, for
+ellipses, it is usually the case that that :math:`\hat{e}_r \cdot \hat{e}_N \ne 0` despite appearances to the contrary!
 
 Assuming the Earth is an ellipsoid
 ----------------------------------
