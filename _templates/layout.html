@@ -2,3 +2,12 @@
 {% block extrahead %}
 <link rel="stylesheet" href="{{ pathto('_static/custom.css', 1) }}" type="text/css">
 {% endblock %}
+{% block footer %}
+<div class="footer">
+<p>
+Copyright &copy; {{ copyright }}
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+{% endblock %}
