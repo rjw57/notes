@@ -343,12 +343,16 @@ def latex_visit_tikzinline(self, node):
     raise nodes.SkipNode
 
 def latex_visit_tikz(self, node):
+    tikz = node['tikz']
+    if node['stringsubst']:
+        curdir = getcwd()
+        tikz = tikz % {'wd': curdir}
     if node['caption']:
         latex = '\\begin{figure}[htp]\\centering\\begin{tikzpicture}' + \
-                node['tikz'] + '\\end{tikzpicture}' + '\\caption{' + \
+                tikz + '\\end{tikzpicture}' + '\\caption{' + \
                 self.encode(node['caption']).strip() + '}\\end{figure}'
     else:
-        latex = '\\begin{center}\\begin{tikzpicture}' + node['tikz'] + \
+        latex = '\\begin{center}\\begin{tikzpicture}' + tikz + \
             '\\end{tikzpicture}\\end{center}'
     self.body.append(latex)
 
