@@ -28,8 +28,10 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 
     [semithick]
 
+    %%%% CONFIGURATION %%%%
+
     %% Define macros for our major and minor radii
-    \def\majorradius{3.5}
+    \def\majorradius{4.5}
     \def\minorradius{2}
 
     %% The angle from the x-axis for our point
@@ -38,24 +40,34 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     %% The horizontal half-width (i.e. radius) of the zoomed in figure
     \def\zoomhalfwidth{2}
 
-    %% The angle of the ground in the zoomed figure, 0 = vertical
-    \def\zoomangle{60}
+    %%%% START PLOTTING %%%%
 
     %% The ellipse centre, major and minor axes
     \coordinate (O) at (0, 0);
     \coordinate (A) at ($(O) + (xy polar cs:angle=0, x radius=\majorradius, y radius=\minorradius)$);
     \coordinate (B) at ($(O) + (xy polar cs:angle=90, x radius=\majorradius, y radius=\minorradius)$);
+    \coordinate (nA) at ($(O) - (xy polar cs:angle=0, x radius=\majorradius, y radius=\minorradius)$);
+    \coordinate (nB) at ($(O) - (xy polar cs:angle=90, x radius=\majorradius, y radius=\minorradius)$);
 
     %% Calculate the position of a point on the surface
     \coordinate (P) at ($(O) + (xy polar cs:angle=\angle, x radius=\majorradius, y radius=\minorradius)$);
+
+    %% Get the x and y co-ordinates of P relative to O
+    \draw ($(P) - (O)$); \pgfgetlastxy{\px}{\py}
+
+    %% Calculate the angle of the ground in the zoomed figure, 0 = vertical. This uses the very differential equation
+    for an ellipse derived below.
+    \pgfmathsetmacro{\zoomangle}{- 90 + atan2( -pow(\majorradius,2) * \py, pow(\minorradius,2) * \px )}
 
     %% Label origin and intersection
     \node [below left] at (O) {$O$};
     \node [above right] at (P) {$P$};
 
     %% Label and draw axes
-    \draw (O) -- node [below] {$a$} (A) node [right] {$A$};
-    \draw (O) -- node [left] {$b$} (B) node [above] {$B$};
+    \draw (O) -- node [below] { $a = |OA| $} (A) node [right] {$A$};
+    \draw (O) -- node [left] {$ b = |OB| $} (B) node [above] {$B$};
+    \draw (O) -- (nA) node [left] {$C$};
+    \draw (O) -- (nB) node [below] {$D$};
 
     %% Draw the surface (requires tikz/pgf >= 2.10)
     \draw (O) circle [x radius=\majorradius, y radius=\minorradius];
@@ -78,18 +90,24 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     \coordinate (ex) at (0.5*\zoomhalfwidth, 0);
     \coordinate (ey) at (0, 0.5*\zoomhalfwidth);
     \coordinate (eN) at (xy polar cs:angle=\zoomangle+90, radius=0.5*\zoomhalfwidth);
+    \coordinate (er) at (xy polar cs:angle=\angle, radius=0.5*\zoomhalfwidth);
 
-    %% Draw P and the surface
-    \fill (P) circle [radius=0.075] node [below left] {$P$};
+    %% Draw the surface
+    \begin{scope}[color=black!50!white]
     \draw ($(P) + (xy polar cs:angle=\zoomangle+90, radius=\zoomhalfwidth)$) -- (P);
     \draw ($(P) + (xy polar cs:angle=\zoomangle-90, radius=\zoomhalfwidth)$) -- (P);
+    \end{scope}
 
     %% Draw the co-ordinate frame
-    \begin{scope}[-stealth, very thick]
-    \draw (P) -- ++ (ex) node [right] {$\hat{e}_x$};
-    \draw (P) -- ++ (ey) node [above] {$\hat{e}_y$};
-    \draw (P) -- ++ (eN) node [above] {$\hat{e}_N$};
+    \begin{scope}[-stealth]
+    \draw (P) -- ++ (ex) node [pos=1.3] {$\hat{e}_x$};
+    \draw (P) -- ++ (ey) node [pos=1.3] {$\hat{e}_y$};
+    \draw (P) -- ++ (eN) node [left] {$\hat{e}_N$};
+    \draw (P) -- ++ (er) node [pos=1.3] {$\hat{e}_r$};
     \end{scope}
+
+    %% Draw P
+    \fill (P) circle [radius=0.075] node [below left] {$P$};
 
     \end{scope}
 
@@ -97,13 +115,14 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider the
 shape of this slice and assert that the Earth is a solid of revolution by symmetry. The figure above shows the geometry
 of that slice through the Earth. The centre of mass of the Earth is at :math:`O` and a point on the surface is at
-:math:`(x, y)`. The y-axis is parallel to the line segment :math:`OB` which is also the rotational axis. The line
-segment :math:`OA` is perpendicular to :math:`OB` and is parallel to the x-axis.
+:math:`(x, y)`. The y-axis is the line passing through :math:`DOB` which is also the rotational axis. The line
+passing through :math:`COA` is perpendicular to :math:`DOB` and is parallel to the x-axis.
 
 On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
 on the surface. The unit vectors :math:`\hat{e}_x` and :math:`\hat{e}_y` point, respectively, along the x- and y-axes.
 The unit vector :math:`\hat{e}_N` points along the surface of the Earth in a northerly direction, i.e. in the direction
-one must walk to reach :math:`B`.
+one must walk to reach :math:`B`. The vector :math:`\hat{e}_r` points along the line :math:`OP`. Note that, for
+ellipses, it is usually the case that that :math:`\hat{e}_r \cdot \hat{e}_N \ne 0` despite appearances to the contrary!
 
 Assuming the Earth is an ellipsoid
 ----------------------------------
