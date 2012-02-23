@@ -23,9 +23,76 @@ Notation
 
 We'll start with a diagram showing a 2D cross-section or 'slice' through the Earth which includes the axis of rotation:
 
-.. figure:: earth-is-not-an-ellipsoid/ellipse-geometry.png
-    :align: center
-    :alt: A figure showing the geometry of a slice through the Earth.
+.. tikz::
+    :libs: arrows, calc, intersections
+
+    [semithick]
+
+    %% Define macros for our major and minor radii
+    \def\majorradius{3.5}
+    \def\minorradius{2}
+
+    %% The angle from the x-axis for our point
+    \def\angle{40}
+
+    %% The horizontal half-width (i.e. radius) of the zoomed in figure
+    \def\zoomhalfwidth{2}
+
+    %% The angle of the ground in the zoomed figure, 0 = vertical
+    \def\zoomangle{60}
+
+    %% The ellipse centre, major and minor axes
+    \coordinate (O) at (0, 0);
+    \coordinate (A) at ($(O) + (xy polar cs:angle=0, x radius=\majorradius, y radius=\minorradius)$);
+    \coordinate (B) at ($(O) + (xy polar cs:angle=90, x radius=\majorradius, y radius=\minorradius)$);
+
+    %% Calculate the position of a point on the surface
+    \coordinate (P) at ($(O) + (xy polar cs:angle=\angle, x radius=\majorradius, y radius=\minorradius)$);
+
+    %% Label origin and intersection
+    \node [below left] at (O) {$O$};
+    \node [above right] at (P) {$P$};
+
+    %% Label and draw axes
+    \draw (O) -- node [below] {$a$} (A) node [right] {$A$};
+    \draw (O) -- node [left] {$b$} (B) node [above] {$B$};
+
+    %% Draw the surface (requires tikz/pgf >= 2.10)
+    \draw (O) circle [x radius=\majorradius, y radius=\minorradius];
+
+    %% Draw the lines to P from the origin and a point projected onto the x- and y-axes
+    \draw (O) -- node [above left] {$r$} (P);
+    \draw ($(O)!(P)!(A)$) -- node [right] {$y$} (P);
+    \draw ($(O)!(P)!(B)$) -- node [above] {$x$} (P);
+
+    %% Draw arrow indicating detail progression
+    \draw [->] ($(A) + (1.2,0)$) -- node [above] {detail} ($(A) + (3,0)$);
+
+    %% The zoom image is shifted
+    \coordinate (zoomorigin) at ($(\zoomhalfwidth,0) + (A) + (3,0)$);
+
+    \begin{scope}[shift=(zoomorigin)]
+
+    %% Re-define the location of P and set some relative vectors
+    \coordinate (P) at (0,0);
+    \coordinate (ex) at (0.5*\zoomhalfwidth, 0);
+    \coordinate (ey) at (0, 0.5*\zoomhalfwidth);
+    \coordinate (eN) at (xy polar cs:angle=\zoomangle+90, radius=0.5*\zoomhalfwidth);
+
+    %% Draw P and the surface
+    \fill (P) circle [radius=0.075] node [below left] {$P$};
+    \draw ($(P) + (xy polar cs:angle=\zoomangle+90, radius=\zoomhalfwidth)$) -- (P);
+    \draw ($(P) + (xy polar cs:angle=\zoomangle-90, radius=\zoomhalfwidth)$) -- (P);
+
+    %% Draw the co-ordinate frame
+    \begin{scope}[-stealth, very thick]
+    \draw (P) -- ++ (ex) node [right] {$\hat{e}_x$};
+    \draw (P) -- ++ (ey) node [above] {$\hat{e}_y$};
+    \draw (P) -- ++ (eN) node [above] {$\hat{e}_N$};
+    \end{scope}
+
+    \end{scope}
+
 
 It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider the
 shape of this slice and assert that the Earth is a solid of revolution by symmetry. The figure above shows the geometry
