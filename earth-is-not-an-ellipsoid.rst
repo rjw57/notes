@@ -31,11 +31,11 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     %%%% CONFIGURATION %%%%
 
     %% Define macros for our major and minor radii
-    \def\majorradius{4}
+    \def\majorradius{4.5}
     \def\minorradius{2}
 
     %% The angle from the x-axis for our point
-    \def\angle{35}
+    \def\angle{40}
 
     %% The horizontal half-width (i.e. radius) of the zoomed in figure
     \def\zoomhalfwidth{2}
@@ -46,6 +46,8 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     \coordinate (O) at (0, 0);
     \coordinate (A) at ($(O) + (xy polar cs:angle=0, x radius=\majorradius, y radius=\minorradius)$);
     \coordinate (B) at ($(O) + (xy polar cs:angle=90, x radius=\majorradius, y radius=\minorradius)$);
+    \coordinate (nA) at ($(O) - (xy polar cs:angle=0, x radius=\majorradius, y radius=\minorradius)$);
+    \coordinate (nB) at ($(O) - (xy polar cs:angle=90, x radius=\majorradius, y radius=\minorradius)$);
 
     %% Calculate the position of a point on the surface
     \coordinate (P) at ($(O) + (xy polar cs:angle=\angle, x radius=\majorradius, y radius=\minorradius)$);
@@ -62,15 +64,17 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     \node [above right] at (P) {$P$};
 
     %% Label and draw axes
-    \draw (O) -- node [below] {$a$} (A) node [right] {$A$};
-    \draw (O) -- node [left] {$b$} (B) node [above] {$B$};
+    \draw (O) -- node [below] { $a = |OA| $} (A) node [right] {$A$};
+    \draw (O) -- node [left] {$ b = |OB| $} (B) node [above] {$B$};
+    \draw (O) -- (nA) node [left] {$C$};
+    \draw (O) -- (nB) node [below] {$D$};
 
     %% Draw the surface (requires tikz/pgf >= 2.10)
     \draw (O) circle [x radius=\majorradius, y radius=\minorradius];
 
     %% Draw the lines to P from the origin and a point projected onto the x- and y-axes
     \draw (O) -- node [above left] {$r$} (P);
-    \draw ($(O)!(P)!(A)$) -- node [left] {$y$} (P);
+    \draw ($(O)!(P)!(A)$) -- node [right] {$y$} (P);
     \draw ($(O)!(P)!(B)$) -- node [above] {$x$} (P);
 
     %% Draw arrow indicating detail progression
@@ -111,8 +115,8 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
 It is a reasonable assumption that the Earth is symmetric around its rotational axis. We can therefore just consider the
 shape of this slice and assert that the Earth is a solid of revolution by symmetry. The figure above shows the geometry
 of that slice through the Earth. The centre of mass of the Earth is at :math:`O` and a point on the surface is at
-:math:`(x, y)`. The y-axis is parallel to the line segment :math:`OB` which is also the rotational axis. The line
-segment :math:`OA` is perpendicular to :math:`OB` and is parallel to the x-axis.
+:math:`(x, y)`. The y-axis is the line passing through :math:`DOB` which is also the rotational axis. The line
+passing through :math:`COA` is perpendicular to :math:`DOB` and is parallel to the x-axis.
 
 On the right of the figure we have zoomed in on the point and labelled some unit vectors defining a co-ordinate system
 on the surface. The unit vectors :math:`\hat{e}_x` and :math:`\hat{e}_y` point, respectively, along the x- and y-axes.
