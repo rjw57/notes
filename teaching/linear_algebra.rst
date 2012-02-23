@@ -1,6 +1,21 @@
 Notes on Linear Algebra given to my students
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. These are specific latex and mathjax magic required to get some nice horizontal and vertical bars in matrices.
+
+.. raw:: latex
+
+    \providecommand{\hmatrixrule}{\frac{\rule{2em}{0pt}}{\rule{2em}{0pt}}}
+    \providecommand{\vmatrixrule}{\rule[-1.2em]{0pt}{2.8em}\left|\rule{0pt}{1em}\right.}
+    \providecommand{\skipline}{\rule{0pt}{\baselineskip}\\}
+
+.. only:: html
+
+    .. math::
+        \newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
+        \newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}
+        \newcommand{\skipline}{\Space{0pt}{2em}{0pt}}
+
 These are some notes on Linear Algebra which I prepared for a group of students I was teaching. They are in no way
 complete but they aim to clarify some common misconceptions and provide a solid basis for further study.
 
@@ -19,9 +34,6 @@ A :math:`1 \times N` vector, :math:`\vec{x}`, multiplied by a :math:`N \times M`
 
 .. math::
 
-    \newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
-    \newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}
-
     \begin{array}{cccc}
     \left[
     \begin{array}{cccc}
@@ -39,7 +51,7 @@ A :math:`1 \times N` vector, :math:`\vec{x}`, multiplied by a :math:`N \times M`
     \vec{x} \cdot \vec{a}_1 & \vec{x} \cdot \vec{a}_2 & \cdots & \vec{x} \cdot \vec{a}_M
     \end{array} \right] 
     \\
-    \Space{0pt}{2em}{0pt}
+    \skipline
     1 \times N & N \times M & \rightarrow & 1 \times M
     \end{array}
 
@@ -74,7 +86,8 @@ A :math:`N \times M` matrix, :math:`A`, multiplied by a :math:`M \times 1` vecto
     \end{array}
     \right]
     \\
-    \Space{0pt}{2em}{0pt} N \times M & M \times 1 & \rightarrow & N \times 1
+    \skipline
+    N \times M & M \times 1 & \rightarrow & N \times 1
     \end{array}
 
 The four fundamental subspaces
@@ -151,7 +164,8 @@ Like matrix-vector multiplication, it is best to think of this as a set of row-w
     \end{array}
     \right]
     \\
-    \Space{0pt}{2em}{0pt} N \times L & L \times M & \rightarrow & N \times M
+    \skipline
+    N \times L & L \times M & \rightarrow & N \times M
     \end{array}
 
 Orthonormal matrices
