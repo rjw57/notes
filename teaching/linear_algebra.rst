@@ -12,8 +12,8 @@ Notes on Linear Algebra
 .. only:: html
 
     .. math::
-        \newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
-        \newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}
+        \newcommand{\hmatrixrule}{\unicode{8212}} % unicode em-dash
+        \newcommand{\vmatrixrule}{|}
         \newcommand{\skipline}{\Space{0pt}{2em}{0pt}}
 
 These are some notes on Linear Algebra which I prepared for a group of students I was teaching. They are in no way
