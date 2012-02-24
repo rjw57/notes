@@ -31,8 +31,8 @@ We'll start with a diagram showing a 2D cross-section or 'slice' through the Ear
     %%%% CONFIGURATION %%%%
 
     %% Define macros for our major and minor radii
-    \def\majorradius{4.5}
-    \def\minorradius{2}
+    \def\majorradius{4}
+    \def\minorradius{1.6}
 
     %% The angle from the x-axis for our point
     \def\angle{40}
