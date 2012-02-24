@@ -12,8 +12,8 @@ Notes on Linear Algebra
 .. only:: html
 
     .. math::
-        \newcommand{\hmatrixrule}{\vcenter{\overline{\Space{2em}{0pt}{0pt}}}}
-        \newcommand{\vmatrixrule}{\vcenter{\Space{0.3ex}{2em}{0pt}}\left\vert\Space{0pt}{1em}{0pt}\right.}
+        \newcommand{\hmatrixrule}{\unicode{8212}} % unicode em-dash
+        \newcommand{\vmatrixrule}{|}
         \newcommand{\skipline}{\Space{0pt}{2em}{0pt}}
 
 These are some notes on Linear Algebra which I prepared for a group of students I was teaching. They are in no way
@@ -225,7 +225,8 @@ Suppose two eigenvectors, :math:`\vec{e}_1` and :math:`\vec{e}_2` with associate
 :math:`\vec{e}_2 = \alpha \vec{e}_1 + \vec{\Delta}` where :math:`\vec{e}_1 \cdot \vec{\Delta} = 0`. Now consider
 multiplying :math:`A` on the right by :math:`\vec{e}_2`:
 
-.. math:: 
+.. math::
+
     A \vec{e}_2 = \lambda_2 \vec{e}_2
     = \lambda_2 \alpha \vec{e}_1 + \lambda_2 \vec{\Delta}
     \qquad\text{and}\qquad
@@ -273,7 +274,7 @@ definition,
 .. math::
 
     A^TA V = V \Lambda_V, \qquad AA^T U = U \Lambda_U,
-    
+
 where :math:`\Lambda_V` and :math:`\Lambda_U` are matrices whose diagonal elements containing the appropriate
 eigenvalues. The size of :math:`\Lambda_U` and :math:`\Lambda_V` depend on the *ranks* of :math:`AA^T` and :math:`A^TA`
 respectively. If you look up the properties of ranks, you’ll discover that the ranks of :math:`A^TA` and :math:`AA^T`
@@ -284,7 +285,9 @@ Since we know that :math:`V` and :math:`U` are orthonormal, their
 inverses must be their own transpose and so we can rearrange the above
 as follows:
 
-.. math:: A^TA = V \Lambda_V V^T, \qquad AA^T = U \Lambda_U U^T.
+.. math::
+
+    A^TA = V \Lambda_V V^T, \qquad AA^T = U \Lambda_U U^T.
 
 This is called the *eigenvector decomposition* of :math:`A`.
 
@@ -312,7 +315,9 @@ decreasing eigenvalue.
 In summary, when the columns of :math:`U` and :math:`V` are arranged in decreasing order of eigenvalue, we may form two
 related eigenvector decompositions of :math:`A`:
 
-.. math:: A^TA = V \Lambda V^T, \qquad AA^T = U \Lambda U^T.
+.. math::
+
+    A^TA = V \Lambda V^T, \qquad AA^T = U \Lambda U^T.
 
 Since each eigenvector of :math:`AA^T` maps to an eigenvector of :math:`A^TA` and vice-versa, we can be confident that
 the ranks of :math:`AA^T` and :math:`A^TA` are identical. This is yet more justification of the assertion about the
@@ -326,7 +331,9 @@ For the moment, suppose that there is some decomposition of an :math:`N \times M
 \times R` orthogonal matrix :math:`U`, a :math:`M \times R` matrix :math:`V` and some :math:`R \times R` matrix
 :math:`\Sigma` whose only non-zero terms are on the diagonal:
 
-.. math:: A = U \Sigma V^T.
+.. math::
+
+    A = U \Sigma V^T.
 
 Consider the form of the matrices :math:`A^TA` and :math:`AA^T`:
 
