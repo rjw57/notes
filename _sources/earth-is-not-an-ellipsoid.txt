@@ -130,7 +130,9 @@ Assuming the Earth is an ellipsoid
 Firstly, let's proceed by assuming that the Earth *is* an ellipsoid. If so, our slice is an ellipse and we can label the
 major and minor radii :math:`a` and :math:`b`. Pythagoras tells us that
 
-.. math:: \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
+.. math::
+
+    \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1.
 
 If we differentiate with respect to :math:`x` we get
 
@@ -167,17 +169,23 @@ Let's consider a point-mass at :math:`P` with mass :math:`m`. The centrifugal fo
 :math:`\hat{e}_x` direction (i.e. away from the axis of rotation). If the Earth has angular velocity :math:`\omega` then
 elementary mechanics tells us that the centrifugal force is
 
-.. math:: f_c = \frac{m x^2 \omega^2}{r} \hat{e}_x.
+.. math::
+
+    f_c = \frac{m x^2 \omega^2}{r} \hat{e}_x.
 
 The force due to gravity is also simple to write down. It acts to pull the mass towards :math:`O` backwards along the
 radial direction :math:`\hat{e}_r`. If :math:`\theta` is the angle :math:`OP` makes to :math:`OA` then some geometry
 tells us that
 
-.. math:: \hat{e}_r = \hat{e}_x \cos \theta + \hat{e}_y \sin \theta = \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y
+.. math::
+
+    \hat{e}_r = \hat{e}_x \cos \theta + \hat{e}_y \sin \theta = \frac{x}{r} \hat{e}_x + \frac{y}{r} \hat{e}_y
 
 and so the force due to gravity is
 
-.. math:: f_g = - \frac{G m_e m}{r^2} \hat{e}_r
+.. math::
+
+    f_g = - \frac{G m_e m}{r^2} \hat{e}_r
 
 where :math:`m_e` is the mass of the Earth and :math:`G` is the gravitational constant..
 
