@@ -153,30 +153,6 @@ on the Web.
 
     The git website contains a *lot* of documentation.
 
-Basic concepts
---------------
-
-The idea behind git is that it provides three things:
-
-- A database of your research which can be organised by you in (almost) any way you care to,
-- Tools allowing you to revert to any previous stage or merge two branches or research into one, and
-- A way to easily backup or share your research with people.
-
-We'll ignore the remote aspects of git for the moment and focus on the advantages it can provide you when used on a
-single machine.
-
-Setting up a git repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-A central concept in the git world is that of a *respository*. This is a single folder/directory on your disk which
-you tell git to manage on your behalf. Turning a directory into a repository is very easy:
-
-.. code-block:: console
-
-    $ git init
-
-Now you have a full database of everything that happens inside that directory from now on.
-
 Your first steps with git
 -------------------------
 
