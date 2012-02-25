@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012-02-24',
+        VERSION:     '2012-02-25',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '',
         HAS_SOURCE:  true
@@ -75,13 +75,13 @@ git backups for you.</p>
 supposed wrongs which happened to good people. In the tradition of 20-20 hindsight it was impossible to see at the time
 what seemingly innocuous activity would cause the heroine of the week&#8217;s life to go wrong but with the help of knowledge
 from the future, Sam could travel back and fix the Universe.</p>
+<p>Git lets you do this with your own research. It provides a safe ground for you to explore ideas, perform destructive
+re-factoring or try out some algorithmic improvement safe in the knowledge that if it ends up not working out, you can
+go back to the point where you made the mistake and rectify it.</p>
 <div class="figure align-center">
 <img alt="../../_images/sam-beckett.jpg" src="../../_images/sam-beckett.jpg" />
 <p class="caption">The power of git compels Sam Beckett to right wrongs.</p>
 </div>
-<p>Git lets you do this with your own research. It provides a safe ground for you to explore ideas, perform destructive
-re-factoring or try out some algorithmic improvement safe in the knowledge that if it ends up not working out, you can
-go back to the point where you made the mistake and rectify it.</p>
 </div>
 <div class="section" id="you-can-use-both-lanes">
 <h3>You can use both lanes<a class="headerlink" href="#you-can-use-both-lanes" title="Permalink to this headline">¶</a></h3>
@@ -89,6 +89,10 @@ go back to the point where you made the mistake and rectify it.</p>
 direction or new though. You can keep developing the old branch as well and only merge back when you know which
 direction is worth keeping. Git provides sophisticated automated algorithms for merging branches allowing you to
 make use of insights gained in all branches of development.</p>
+<div class="figure align-center">
+<img alt="../../_images/use-both-lanes.jpg" src="../../_images/use-both-lanes.jpg" />
+<p class="caption">In the real world this becomes very hard when there is a barrier between them.</p>
+</div>
 </div>
 <div class="section" id="backups-no-problem">
 <h3>Backups? No problem<a class="headerlink" href="#backups-no-problem" title="Permalink to this headline">¶</a></h3>
@@ -96,14 +100,23 @@ make use of insights gained in all branches of development.</p>
 full`featured git repository just as the repository on your own disk is. Git provides tools to synchronise
 between remote repositories meaning that your backup and your main work space are just as good as each other. Disaster
 recovery involves only syncing your backup back to a fresh checkout.</p>
+<div class="figure align-center">
+<img alt="../../_images/backup.png" src="../../_images/backup.png" />
+<p class="caption">Backups are something you <em>only</em> do after you have lost at least one year&#8217;s worth of work to the hard drive
+gremlins.</p>
+</div>
 </div>
 <div class="section" id="a-searchable-database-of-your-code">
 <h3>A searchable database of your code<a class="headerlink" href="#a-searchable-database-of-your-code" title="Permalink to this headline">¶</a></h3>
 <p>Git provides a very powerful command known as <strong class="command">git grep</strong> which can search all of your code in an instant for any
 word or phrase you desire. Moreover it can search any <em>version</em> of your code back in time to see where something was
 mentioned or defined first.</p>
-<p>There is also a valuable tool known as <strong class="command">git blame</strong> which can mark every line of your code with the exact date and time
-it was written and give you access to a message you wrote at the time describing the change.</p>
+<p>There is also a valuable tool known as <strong class="command">git blame</strong> which can mark every line of your code with the exact date
+and time it was written and give you access to a message you wrote at the time describing the change.</p>
+<div class="figure align-center">
+<img alt="../../_images/file-cat.jpg" src="../../_images/file-cat.jpg" />
+<p class="caption">It is now the law that all documents published on the Internet must contain one humorous cat picture. This is it.</p>
+</div>
 </div>
 </div>
 <div class="section" id="getting-started">
@@ -190,6 +203,238 @@ you tell git to manage on your behalf. Turning a directory into a repository is 
 </pre></div>
 </div>
 <p>Now you have a full database of everything that happens inside that directory from now on.</p>
+</div>
+</div>
+<div class="section" id="your-first-steps-with-git">
+<h2>Your first steps with git<a class="headerlink" href="#your-first-steps-with-git" title="Permalink to this headline">¶</a></h2>
+<p>Before doing anything with git, you need to tell it who you are. This is because a) each and every change you record in
+the database has associated with it an &#8216;author&#8217; and b) if you start sharing your work with people, they are going to
+want to know who did what.</p>
+<p>Git has an in-built configuration system which is accessed, perhaps unsurprisingly, via the command <strong class="command">git
+config</strong>. In this case, you can tell git who you are and what your email address is via the following two commands:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git config --global user.name <span class="s2">&quot;Steve Jobs&quot;</span>
+<span class="gp">$</span> git config --global user.email <span class="s2">&quot;sjobs@example.com&quot;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">--global</span></tt> option passed to <strong class="command">git config</strong> tells git that this setting is for every git repository you use.
+There are also local settings which affect only the repository you&#8217;re currently working on but we&#8217;ll ignore those for
+the moment.</p>
+<p>Once you&#8217;ve told git who you are, you can start doing some research. When I start a new project I always as a matter of
+course create a git repository whenever I create a folder for a new project.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I use the term &#8216;directory&#8217; rather than folder. I do this because I&#8217;m old and grumpy and don&#8217;t hold with these modern
+terminologies which entered the computing lexicon in 1995.</p>
+</div>
+<p>Creating a git repository is pretty simple. I&#8217;m going to create a new project called, imaginatively, <em>project</em> which I
+shall immediately start using as a git repository.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir project
+<span class="gp">$</span> <span class="nb">cd </span>project
+<span class="gp">$</span> git init
+<span class="go">Initialized empty Git repository in /home/rjw57/git/project/.git/</span>
+</pre></div>
+</div>
+<p>That&#8217;s it. Unlike other similar systems which require that you set up servers or network drives, git can create a
+repository with one command. This is why I always set up a git repository when I start a new project: it costs nothing
+to do and if I end up throwing the project away, I can just delete the project directory and the repository vanishes.</p>
+<p>I can now start writing away performing amazing cutting edge research. For example, let&#8217;s assume I&#8217;ve created the file
+<tt class="docutils literal"><span class="pre">amazing-researc.m</span></tt> with the following MATLAB code in it:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="c">% Radians from zero to a full turn</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="p">(</span>0<span class="p">:</span>360<span class="p">)</span> <span class="o">*</span> <span class="p">(</span>2<span class="o">*</span><span class="nb">pi</span><span class="o">/</span>360<span class="p">);</span>
+
+<span class="c">% Plot a sine-wave</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Ground-breaking stuff. Git&#8217;s entire job is to manage snapshots of directories. Unlike a backup solution like&#8212;for
+example&#8212;Dropbox, git will only record changes when <em>you</em> tell it to. Let&#8217;s tell git that we want to add the new file
+we created to the repository:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git add amazing-research.m
+</pre></div>
+</div>
+<p>This doesn&#8217;t record the change just yet though. Git will wait to see if we want to add more files. The change is only
+recorded when we <em>commit</em> using the <strong class="command">git commit</strong> command. At any point, the <strong class="command">git status</strong> command will
+tell us what would be committed at that point:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span>
+<span class="gp">#</span> Initial commit
+<span class="gp">#</span>
+<span class="hll"><span class="gp">#</span> Changes to be committed:
+</span><span class="hll"><span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+</span><span class="hll"><span class="gp">#</span>
+</span><span class="hll"><span class="gp">#</span>       new file:   amazing-research.m
+</span><span class="hll"><span class="gp">#</span>
+</span></pre></div>
+</div>
+<p>Git displayed a lot of information here but we&#8217;re interested in the last bit. It says that when we commit, we&#8217;ll record
+one change: a new file was created called <tt class="file docutils literal"><span class="pre">amazing-research.m</span></tt> and the contents of that file will be
+recorded.  Let&#8217;s go ahead and commit this change:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git commit
+</pre></div>
+</div>
+<p>As soon as I hit enter, git loads up a text editor and asks me to enter a message describing my commit:</p>
+<div class="figure align-center">
+<img alt="../../_images/git-commit-editor.png" src="../../_images/git-commit-editor.png" />
+<p class="caption"><strong class="command">git commit</strong> prompts me to enter a description of the commit.</p>
+</div>
+<p>Helpfully, the output from <strong class="command">git status</strong> is included so that I can see what I&#8217;m actually going to commit. Any
+lines starting with &#8216;<tt class="docutils literal"><span class="pre">#</span></tt>&#8216; are ignored and so this information is just for my own convenience; it wont be saved with
+the commit. I&#8217;m going to enter in a message describing the commit:</p>
+<div class="figure align-center">
+<img alt="../../_images/git-commit-editor-post.png" src="../../_images/git-commit-editor-post.png" />
+<p class="caption">Entering a description of the commit.</p>
+</div>
+<p>There is a convention when using git that a commit message consists of a single-line terse description of the change
+followed by a longer in-depth description. The reason for this convention will become clearer later. After asking for
+the commit message, <strong class="command">git commit</strong> displays what it did:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git commit
+<span class="hll"><span class="go">[master (root-commit) da67b59] initial commit of my amazing new research project</span>
+</span><span class="hll"><span class="go"> 1 files changed, 6 insertions(+), 0 deletions(-)</span>
+</span><span class="hll"><span class="go"> create mode 100644 amazing-research.m</span>
+</span></pre></div>
+</div>
+<p>This change has now been recorded in the database. We&#8217;re told that the commit changed one file and inserted 6 new lines
+overall. There were no lines deleted. The magic hex string <tt class="docutils literal"><span class="pre">da67b59</span></tt> is a unique identifier for this commit. We can
+see that by using the <strong class="command">git status</strong> command again to see what has changed:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="go">nothing to commit (working directory clean)</span>
+</pre></div>
+</div>
+<p>Nothing has changed since the last commit and so <strong class="command">git status</strong> does not report any new or modified files.
+Suppose I now discover that the function is periodic. I change <tt class="file docutils literal"><span class="pre">amazing-research.m</span></tt> to look like this:</p>
+<div class="highlight-matlab"><div class="highlight"><pre><span class="c">% Radians from zero to two full turns</span>
+<span class="n">theta</span> <span class="p">=</span> <span class="p">(</span>0<span class="p">:</span>720<span class="p">)</span> <span class="o">*</span> <span class="p">(</span>2<span class="o">*</span><span class="nb">pi</span><span class="o">/</span>360<span class="p">);</span>
+
+<span class="c">% Plot a sine-wave</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="nb">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Now <strong class="command">git status</strong> tells me that I&#8217;ve changed the file:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span> Changes not staged <span class="k">for </span>commit:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+<span class="gp">#</span>
+<span class="hll"><span class="gp">#</span>       modified:   amazing-research.m
+</span><span class="gp">#</span>
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</pre></div>
+</div>
+<p>I can see what has changed since the last commit using the <strong class="command">git diff</strong> command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git diff
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>The <strong class="command">git diff</strong> command displays what has changed using a plain-text format called, again rather
+unimaginatively, <em>diff</em>. This is what is displayed with each line colour-coded:</p>
+<div class="highlight-diff"><div class="highlight"><pre><span class="gh">diff --git a/amazing-research.m b/amazing-research.m</span>
+<span class="gh">index b648870..306d3b4 100644</span>
+<span class="gd">--- a/amazing-research.m</span>
+<span class="gi">+++ b/amazing-research.m</span>
+<span class="gu">@@ -1,5 +1,5 @@</span>
+<span class="gd">-% Radians from zero to a fill turn</span>
+<span class="gd">-theta = (0:360) * (2*pi/360);</span>
+<span class="gi">+% Radians from zero to two full turns</span>
+<span class="gi">+theta = (0:720) * (2*pi/360);</span>
+
+ % Plot a sine-wave
+ plot(theta, sin(theta));
+</pre></div>
+</div>
+<p>Lines starting with a &#8216;<tt class="docutils literal"><span class="pre">-</span></tt>&#8216; show lines removed from a file, those starting with &#8216;<tt class="docutils literal"><span class="pre">+</span></tt>&#8216; show lines added and the
+remainder show lines giving the context around the additions and deletions. In this case we see that we&#8217;ve changed two
+lines.  Using the <strong class="command">git commit</strong> command at the moment will <em>not</em> commit this change. If we look back at the
+<strong class="command">git status</strong> output, we see the following:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="hll"><span class="gp">#</span> Changes not staged <span class="k">for </span>commit:
+</span><span class="hll"><span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+</span><span class="hll"><span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+</span><span class="gp">#</span>
+<span class="gp">#</span>       modified:   amazing-research.m
+<span class="gp">#</span>
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</pre></div>
+</div>
+<p>Git is conservative about tracking changes. It will only record changes you tell it to. This may seem annoying but this
+is actually one of git&#8217;s most powerful features. It encourages you to commit partial, logically disjoint changes rather
+than making several changes to a file and having to commit all of them or none of them. There are two ways we could tell
+git that we want to record this change when we commit: we could use the <strong class="command">git add</strong> command as suggested in the
+status message but we can also use the <em class="xref std std-option">-a</em> option to <strong class="command">git commit</strong>. This option tells <strong class="command">git
+commit</strong> to automatically add <em>all</em> changes from files git knows about. This is exactly what we cant to do in this case
+and so I can go ahead and issue the appropriate command.</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git commit -a
+
+<span class="go">[master 2da219f] show that sin() is periodic</span>
+<span class="go"> 1 files changed, 2 insertions(+), 2 deletions(-)</span>
+</pre></div>
+</div>
+<p>Again git asked me for a commit message by opening an editor and I supplied one.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>If your change is only small, you can supply the commit message directly to <strong class="command">git commit</strong> via the
+<em class="xref std std-option">-m</em> option. For example, I could have avoided git opening a text editor above by using the following
+command instead:</p>
+<div class="last highlight-console"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s1">&#39;show that sin() is periodic&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>Although I provided git with a multi-line commit message for both of my commits, the output from <strong class="command">git commit</strong>
+telling me what happened only included the first line. This is partly the reason for the commit message convention I
+outlined above: git assumes the first line of the commit message is a suitable &#8216;shorthand&#8217; for the entire commit when it
+has to display a commit message in a small space. For example, I can get git to display a log of all the commits so far,
+one per line, using the <strong class="command">git log</strong> command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git log --oneline
+<span class="go">2da219f show that sin() is periodic</span>
+<span class="go">da67b59 initial commit of my amazing new research project</span>
+</pre></div>
+</div>
+<p>This command displays the first line of the commits we&#8217;ve made starting with the latest commit. It also displays the
+unique hex id of each commit. It is sometimes useful to use this number to refer to a specific commit when using other
+commands. If I wanted the full information on each commit, I can use the <strong class="command">git log</strong> command with no options:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git log
+<span class="go">commit 2da219f02f282e152fc513c39f29048f85109a19</span>
+<span class="go">Author: Rich Wareham &lt;rjw57@cam.ac.uk&gt;</span>
+<span class="go">Date:   Fri Feb 24 23:42:03 2012 +0000</span>
+
+<span class="go">    show that sin() is periodic</span>
+
+<span class="go">    It turns out that the sin() function is periodic! Demonstrate this by</span>
+<span class="go">    plotting it&#39;s value from zero to 720 degrees rather than just zero to</span>
+<span class="go">    360.</span>
+
+<span class="go">commit da67b59d1a458918f67e11b9421069e277d074f3</span>
+<span class="go">Author: Rich Wareham &lt;rjw57@cam.ac.uk&gt;</span>
+<span class="go">Date:   Fri Feb 24 23:03:49 2012 +0000</span>
+
+<span class="go">    initial commit of my amazing new research project</span>
+
+<span class="go">    I have just discovered the new mathematical function sin() implemented</span>
+<span class="go">    in the MATLAB language. It is an interesting undulating shape which</span>
+<span class="go">    amazing-research.m can plot.</span>
+</pre></div>
+</div>
+<p>This time we can see the full commit messages, when the commit was made, who authored it and the full id for the commit.
+Git records your name and email address with every commit and so it is very important that you tell git who you are
+before you start using it. If you don&#8217;t specify a name and email address, Git will attempt to guess as best it can from
+your local username. In general this doesn&#8217;t work very well.</p>
+<p>If you prefer GUI programs, git comes with a program called <strong class="command">gitk</strong> which can display the history of your
+project and allows you to explore the history. When run from the directory containing our project, it looks like this:</p>
+<div class="figure align-center">
+<img alt="../../_images/gitk.png" src="../../_images/gitk.png" />
+<p class="caption">The <strong class="command">gitk</strong> program showing the history of our project so far.</p>
+</div>
+<p>If you look to the upper-left of the <strong class="command">gitk</strong> window, you can see that the history of the project is displayed in
+a manner akin to an underground train map: there is a line showing the progress of the project and each commit is
+represented as a circle, much like stations on the map. In fact this history can get quite complex when multiple people
+are collaborating on the same project. For example, this is <strong class="command">gitk</strong>&#8216;s output when run from the directory
+containing a collaborative research project I&#8217;m working on:</p>
+<div class="figure align-center">
+<img alt="../../_images/gitk-complex.png" src="../../_images/gitk-complex.png" />
+<p class="caption">The history graphs generated by <strong class="command">gitk</strong> can become quite complex. <a class="reference external" href="http://cm.bell-labs.com/cm/cs/who/dmr/odd.html">You are not expected to understand this</a>.</p>
 </div>
 </div>
 </div>
