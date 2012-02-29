@@ -1,0 +1,29 @@
+William Whewell's Hypothetico-deductive model of the Scientific Method
+
+# Gather data (observations about something that is unknown, unexplained, or new)
+
+# Hypothesize an explanation for those observations.
+
+# Deduce a consequence of that explanation (a prediction). Formulate an
+  experiment to see if the predicted consequence is observed.
+
+# Wait for corroboration. If there is corroboration, go to step 3. If not, the
+  hypothesis is falsified. Go to step 2.
+
+Metropolis Hastings
+
+# Start with some state which is a sample from your distribution
+
+# Propose a new state
+
+# Calculate an acceptance parameter denoting how likely it is that this state is accepted.
+
+# If not accepted, got to 3 otherwise go to step 2
+
+The scientific method is essentially a Monte Carlo optimisation procedure.
+
+Why do particle filters work better than straight-forward MH? Co-ordinated branching and merging strategies. A model for how scientists _really_ do research and how complex systems really evolve.
+
+git lets the computer do the hard work so you don't have to
+
+Developed primarily for software engineering but works well for any research whose state can be summariesed by a folder on your hard-disk.
