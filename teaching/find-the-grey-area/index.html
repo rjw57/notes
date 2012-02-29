@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Find the grey and black areas &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2012-02-29',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="next" title="Using git for your work" href="../../technical/using-git/" />
+    <link rel="prev" title="Notes on Linear Algebra" href="../linear_algebra/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>Find the grey and black areas</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../linear_algebra/">Notes on Linear Algebra</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="find-the-grey-and-black-areas">
+<h1>Find the grey and black areas<a class="headerlink" href="#find-the-grey-and-black-areas" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="question">
+<h2>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h2>
+<p>The figure below shows a butterfly badge design bounded by a square with side-length of 2. The design is comprised of
+four touching semi-circles and two inscribed circles. Find the grey and black areas.</p>
+<div class="figure">
+<p><img src="../../_images/tikz-969c5b93fbded2e44c0877dc34a008f38834b67f.png" alt="\begin{scope}[x=1.5in, y=1.5in, thin]
+
+%% grey area
+\begin{scope}[fill=gray]
+\clip
+(2,0) arc[start angle=270, end angle=90, radius=1] -- (2,0)  %% right
+(0,0) arc[start angle=-90, end angle=90, radius=1] -- (0,0); %% left
+\fill (0,0) arc[start angle=180, end angle=0, radius=1];   %% bottom
+\end{scope}
+
+%% black area
+\pgfmathsetmacro{\holeradius}{1-1/sqrt(2)}
+\begin{scope}[fill=black, even odd rule]
+\clip
+(2,0) arc[start angle=270, end angle=90, radius=1] -- cycle  %% right
+(0,0) arc[start angle=-90, end angle=90, radius=1] -- cycle  %% left
+(0.5,1.5) circle (\holeradius) (1.5,1.5) circle (\holeradius);
+\fill (0,2) arc[start angle=180, end angle=360, radius=1]; %% top
+\end{scope}
+
+%% boundaries
+\draw (0,0) rectangle (2,2);
+\draw (0,2) arc[start angle=180, end angle=360, radius=1]; %% top
+\draw (2,0) arc[start angle=270, end angle=90, radius=1];  %% right
+\draw (0,0) arc[start angle=180, end angle=0, radius=1];   %% bottom
+\draw (0,0) arc[start angle=-90, end angle=90, radius=1];  %% left
+
+%% quadrant
+\begin{scope}[xshift=3.5in, yshift=0.75in]
+\node[below left] at (0,0) {$A$};
+\node[above left] at (0,1) {$B$};
+\node[above right] at (1,1) {$C$};
+\node[below right] at (1,0) {$D$};
+
+\pgfmathsetmacro{\eradius}{sqrt(2)-1}
+\node[right] at ($ (1,0) + (xy polar cs:angle=135, radius=\eradius)$) {$E$};
+
+\draw (0,0) rectangle (1,1); %% boundary
+\draw (0,0) arc[start angle=180, end angle=90, radius=1]; %% upper circle
+\draw (0,0) arc[start angle=-90, end angle=0, radius=1]; %% lower circle
+
+\draw[-latex] (1,0) -- ++ (xy polar cs:angle=135, radius=1) node [above left] {$R$};
+
+\end{scope}
+
+\end{scope}" /></p>
+</div></div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>Consider a single quadrant <span class="math">\(ABCD\)</span> of the larger figure above. This quadrant is, by symmetry, congruent to any other
+quadrant. The grey area is twice that of the area bounded by the two arcs <span class="math">\(ARC\)</span> and <span class="math">\(AEC\)</span>. This area, being the overlap
+of the circle segments <span class="math">\(ABC\)</span> and <span class="math">\(ADC\)</span>, and since <span class="math">\(|DR| = |AD| = |AB| = 1\)</span>, is given by:</p>
+<div class="math">
+\[A_1 = 2 \cdot \frac{1}{4} \cdot \pi - 1 = \frac{\pi}{2} - 1.\]</div>
+<p>The grey area is therefore <span class="math">\(2A_1\)</span> or</p>
+<div class="math">
+\[A_2 = \pi - 2 = 1.14159\ldots.\]</div>
+<p>Computing the black area above is easy once the diameter <span class="math">\(|RE|\)</span> has been computed. By symmetry, <span class="math">\(|DR| = |BE| = 1\)</span>. Since
+<span class="math">\(|BD| = \sqrt{2}\)</span> and <span class="math">\(B\)</span>, <span class="math">\(R\)</span>, <span class="math">\(E\)</span> and <span class="math">\(D\)</span> are co-linear, it follows that</p>
+<div class="math">
+\[|RE| = |BE| + |DR| - |BD| = 2 - \sqrt{2}.\]</div>
+<p>The radius of the circles within the black area are therefore both <span class="math">\(1 - 1/\sqrt{2}\)</span> and hence the black area is given by</p>
+<div class="math">
+\[A_3 = A_2 - 2 \left( \pi \left[1 - \frac{1}{\sqrt{2}}\right]^2 \right)
+= 2 \left[ \left( \sqrt{2} - 1 \right ) \pi - 1 \right]
+= 0.60258\ldots.\]</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../linear_algebra/">Notes on Linear Algebra</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+<div class="footer">
+<p>
+Copyright &copy; 2012, Rich Wareham.
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+
+  </body>
+</html>
