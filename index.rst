@@ -22,6 +22,7 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
     earth-is-not-an-ellipsoid
 
     teaching/linear_algebra
+    teaching/find-the-grey-area
 
 Work in progress notes
 ----------------------
