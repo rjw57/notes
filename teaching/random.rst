@@ -36,9 +36,10 @@ As an example, suppose that there are four competitors: 0, 1, 2 and 3. We throw 
 dividing 5 by 4 is 1 and so competitor 1 gets the laptop.
 
 Can you see the flaw? Don't worry if not. It's subtle. I'll explain it in a moment but back to the story: I sent the
-producers of the podcast a polite note pointing out that the competition was (very, very, very slightly) unfair and
-that, if they were my students, they'd have had a frowning face drawn on their work. I got the reply back that it didn't
-matter because the result was 'random'.
+producers of the podcast a polite, and jokey, note pointing out that the competition was (very, very, very slightly)
+unfair and that, if they were my students, they'd have had a frowning face drawn on their work. I also noted that I
+didn't want them to fix it since the flaw was in my favour. I got the reply back that it didn't matter because the
+result was 'random'.
 
 Yes indeed, it was random but it was unfair. Have you spotted how? Well, let's write down a table of possible die rolls
 and the winner of the laptop:
