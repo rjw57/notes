@@ -12,7 +12,7 @@ if you can't name it.
     :alt: You keep using that word. I do not think it means what you think it means.
     :align: center
 
-    Ingio Montoya knows best.
+    Inigo Montoya knows best.
 
 A real-world example
 --------------------
