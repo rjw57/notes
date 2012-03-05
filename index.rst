@@ -23,6 +23,7 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
 
     teaching/linear_algebra
     teaching/find-the-grey-area
+    teaching/random
 
 Work in progress notes
 ----------------------
@@ -34,4 +35,3 @@ These notes are works in progress and may or may not be in a useful state.
 
     technical/using-git
     teaching/probability_guide
-    teaching/random
