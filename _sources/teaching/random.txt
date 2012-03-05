@@ -18,7 +18,7 @@ A real-world example
 --------------------
 
 A podcast which I listen to---I wont name it---recently ran a competition to win a laptop. They proudly proclaimed that
-they were going to let the machine itself pick it's new owner. They wrote a program which would electronically pick a
+they were going to let the machine itself pick its new owner. They wrote a program which would electronically pick a
 name from a hat and that person would win that laptop. Being an Open Source podcast, they provided the source for their
 program. I'm going to re-state their program in terms which are easier to understand. This 'program' only works if there
 are no more than 6 people in the competition, but the principle is the same as the real example.
