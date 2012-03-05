@@ -23,6 +23,7 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
 
     teaching/linear_algebra
     teaching/find-the-grey-area
+    teaching/random
 
 Work in progress notes
 ----------------------

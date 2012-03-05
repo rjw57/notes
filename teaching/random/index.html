@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The meaning of ‘random’ &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2012-03-05',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="next" title="Using git for your work" href="../../technical/using-git/" />
+    <link rel="prev" title="Find the grey and black areas" href="../find-the-grey-area/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>The meaning of ‘random’</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../find-the-grey-area/">Find the grey and black areas</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="the-meaning-of-random">
+<h1>The meaning of &#8216;random&#8217;<a class="headerlink" href="#the-meaning-of-random" title="Permalink to this headline">¶</a></h1>
+<p>This note addresses a very common misconception about the word &#8216;random&#8217;. Or, rather, it discusses two separate concepts
+which are often combined into the same word: <em>randomness</em> and <em>uniformly distributed</em>.</p>
+<p>What is the difference? Why should I care? Surely it only matters to pedants and mathematicians. The problem is not one
+of being &#8216;right&#8217; or &#8216;wrong&#8217;. It is one of being able to express yourself to other people: you can&#8217;t talk about something
+if you can&#8217;t name it.</p>
+<div class="figure align-center">
+<img alt="You keep using that word. I do not think it means what you think it means." src="../../_images/montoya.jpg" />
+<p class="caption">Ingio Montoya knows best.</p>
+</div>
+<div class="section" id="a-real-world-example">
+<h2>A real-world example<a class="headerlink" href="#a-real-world-example" title="Permalink to this headline">¶</a></h2>
+<p>A podcast which I listen to&#8212;I wont name it&#8212;recently ran a competition to win a laptop. They proudly proclaimed that
+they were going to let the machine itself pick it&#8217;s new owner. They wrote a program which would electronically pick a
+name from a hat and that person would win that laptop. Being an Open Source podcast, they provided the source for their
+program. I&#8217;m going to re-state their program in terms which are easier to understand. This &#8216;program&#8217; only works if there
+are no more than 6 people in the competition, but the principle is the same as the real example.</p>
+<ol class="arabic simple">
+<li>Assign each competitor a (unique) number from zero to the number of entrants. The first competitor is &#8216;0&#8217;, the second
+&#8216;1&#8217;, and so on.</li>
+<li>Throw a six-sided die and write down the result.</li>
+<li>Divide the number your rolled by the number of competitors and write down the remainder.</li>
+<li>Give the laptop to the competitor with that number.</li>
+</ol>
+<p>As an example, suppose that there are four competitors: 0, 1, 2 and 3. We throw the die and get a 5. The remainder after
+dividing 5 by 4 is 1 and so competitor 1 gets the laptop.</p>
+<p>Can you see the flaw? Don&#8217;t worry if not. It&#8217;s subtle. I&#8217;ll explain it in a moment but back to the story: I sent the
+producers of the podcast a polite note pointing out that the competition was (very, very, very slightly) unfair and
+that, if they were my students, they&#8217;d have had a frowning face drawn on their work. I got the reply back that it didn&#8217;t
+matter because the result was &#8216;random&#8217;.</p>
+<p>Yes indeed, it was random but it was unfair. Have you spotted how? Well, let&#8217;s write down a table of possible die rolls
+and the winner of the laptop:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Die</th>
+<th class="head">Winner</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>3</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Is this fair? Entrants 0 and 1 have a 2/6 or one in three chance of winning whereas entrants 2 and 3 only have a one in
+six chance. If the entrants are allocated a number on a first come first served basis then the competition is biased in
+favour of those who entered early.</p>
+</div>
+<div class="section" id="uniform-distribution">
+<h2>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">¶</a></h2>
+<p>So, the competition result was indeed <em>random</em> but was it <em>fair</em>? No. But no-matter how much I tried to explain, I kept
+running up against the brick wall of misunderstanding: I was telling them it wasn&#8217;t &#8216;random&#8217; but it <em>was</em> &#8216;random&#8217;
+because no one could predict the result.</p>
+<p>Well, yes. The word &#8216;random&#8217; does indeed mean that; a random variable is one whose value cannot be precisely predicted
+before you measure it. A person&#8217;s height is a random variable. Before you measure it, you don&#8217;t know what a person&#8217;s
+precise height it. You can certainly put bounds on it; if you&#8217;ve not seen them you can reasonably suppose it will be
+between 1 and 8 feet.</p>
+<p>All heights are not equally likely. For example, you would expect there to be far more men whose height is in the range
+5-6 feet than those who are 4-foot something.</p>
+<p>When we have a random variable where all values in a range are equally likely we call it <em>uniformly distributed</em>. A
+(fair) die is uniformly distributed. You would expect the likelihood of rolling a six to be the same as that of rolling
+a one.</p>
+<p>So, next time you are complaining&#8212;or being complained to&#8212;about something being &#8216;unfair because it isn&#8217;t random&#8217;, ask
+yourself if you mean it isn&#8217;t random or that it isn&#8217;t uniformly distributed.</p>
+</div>
+<div class="section" id="too-long-didn-t-read">
+<h2>Too long; didn&#8217;t read<a class="headerlink" href="#too-long-didn-t-read" title="Permalink to this headline">¶</a></h2>
+<p>The conclusion you should take from this note is that &#8216;random&#8217; is not the same as &#8216;uniformly distributed&#8217;:</p>
+<ul class="simple">
+<li>A <strong>random</strong> variable is one whose precise value cannot be predicted before your measure it.</li>
+<li>A <strong>uniformly distributed</strong> variable is one whose values are all equally likely.</li>
+</ul>
+</div>
+<div class="section" id="other-distributions">
+<h2>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this headline">¶</a></h2>
+<p>A variable can be random and non-uniformly distributed. Coming back to our example of heights, the height of a person is
+indeed random but we expect values to be clustered around some average. We call this pattern of values a <em>distribution</em>.
+If we take lots of values of a random variable, we call it sampling and each value, which we call a <em>sample</em>, is said to
+be <em>drawn</em> from the underlying distribution.</p>
+<p>The rolls from a fair six-sided dice are samples drawn from the uniform distribution of whole numbers between 1 and 6
+inclusive. The heights of the human population can be approximated as samples drawn from something called the
+<a class="reference external" href="http://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>.</p>
+</div>
+<div class="section" id="epilogue-uniform-random">
+<h2>Epilogue: uniform <span class="math">\(\ne\)</span> random<a class="headerlink" href="#epilogue-uniform-random" title="Permalink to this headline">¶</a></h2>
+<p>Suppose I give you the following sequence of numbers:</p>
+<blockquote>
+<div>1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, <span class="math">\(X\)</span></div></blockquote>
+<p>Can you predict what number should go in place of <span class="math">\(X\)</span>? I hope it&#8217;s obvious that <span class="math">\(X\)</span> is 5. You can predict
+these numbers; they are not random. If <span class="math">\(X\)</span> is 5, however, then there are three of each number. By our definition
+above they are uniformly distributed.</p>
+<p>Usually, to be fair, a competition result needs to be <em>both</em> random <em>and</em> uniformly distributed. One rarely suffices on
+it&#8217;s own.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../find-the-grey-area/">Find the grey and black areas</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+<div class="footer">
+<p>
+Copyright &copy; 2012, Rich Wareham.
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+
+  </body>
+</html>
