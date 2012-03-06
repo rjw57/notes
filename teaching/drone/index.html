@@ -85,7 +85,7 @@ shall assume that the drone is accelerating slowly w.r.t. gravity and hence:</p>
 <p>where <span class="math">\(\hat{\Delta\gamma}\)</span> is our current estimate of the linear drift. There are many ways of estimating this. A very
 simple one is to keep track of the expected value of <span class="math">\(\hat{\gamma}_{t} - \hat{\gamma}_{t-1}\)</span> due to the commands
 we&#8217;re sending the drone (e.g. we expect <span class="math">\(\hat{\gamma}_{t-1} = \hat{\gamma}_t\)</span> if we are sending a zero-yaw command) and
-update <span class="math">\(\hat{\Delta\gamma}\)</span> from the measured <span class="math">\(gamma_t - \gamma_{t-1}\)</span>. Ideally this should be smoothed over time with
+update <span class="math">\(\hat{\Delta\gamma}\)</span> from the measured <span class="math">\(\gamma_t - \gamma_{t-1}\)</span>. Ideally this should be smoothed over time with
 some sort of moving average process. This is left as an exercise for the reader(!)</p>
 <p>The value we need to add to the <span class="math">\(\theta\)</span> vector is therefore <span class="math">\(\hat{\Delta\gamma}\)</span>.</p>
 </div>
