@@ -118,5 +118,5 @@ References
   <http://labe.felk.cvut.cz/~tkrajnik/articles/eurobot11.pdf>`_].
 
 * Bristeau, P.-J., Callou, F., Vissiere, D., Petit, N. *The Navigation and Control technology inside the AR.Drone micro
-  UAV* [`PDF <cas.ensmp.fr/~petit/papers/ifac11//PJB.pdf>`_]
+  UAV* [`PDF <http://cas.ensmp.fr/~petit/papers/ifac11//PJB.pdf>`_]
 
