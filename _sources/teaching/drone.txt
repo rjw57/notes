@@ -110,3 +110,13 @@ image-based, drone-reported and model-based estimate of our current state. The f
 The values of `k_i`, `k_d` and `k_m` may be set empirically or one might set them via a Kalman filter. This too is left
 as an exercise.
 
+References
+----------
+
+* Krajnik, T, Vonasek, V., Fiser, D., Faigl, J. *AR-Drone as a Platform for Robotic Research and Education* in Research
+  and Education in Robotics: EU- ROBOT 2011, Heidelberg, Springer (2011) To appear [`PDF
+  <http://labe.felk.cvut.cz/~tkrajnik/articles/eurobot11.pdf>`_].
+
+* Bristeau, P.-J., Callou, F., Vissiere, D., Petit, N. *The Navigation and Control technology inside the AR.Drone micro
+  UAV* [`PDF <cas.ensmp.fr/~petit/papers/ifac11//PJB.pdf>`_]
+
