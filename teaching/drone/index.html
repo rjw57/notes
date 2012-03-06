@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Estimating the state of the AR.Drone &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2012-03-06',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="prev" title="A very brief guide to probability" href="../probability_guide/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>Estimating the state of the AR.Drone</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../probability_guide/">A very brief guide to probability</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="estimating-the-state-of-the-ar-drone">
+<h1>Estimating the state of the AR.Drone<a class="headerlink" href="#estimating-the-state-of-the-ar-drone" title="Permalink to this headline">¶</a></h1>
+<p>This note talks about some possible strategies for updating an assumed state of an AR.Drone given noisy sensor inputs.
+It is not intended as a full discussion of the problem but it is intended as a good jumping off point.</p>
+<p>I am going to assume that the full state of the drone can be represented by the pair <span class="math">\((\omega, \theta)\)</span> where <span class="math">\(\omega\)</span>
+represents the physical configuration of the drone:</p>
+<div class="math">
+\[\omega = [ x, y, z, \alpha, \beta, \gamma ],\]</div>
+<p>where <span class="math">\(x\)</span>, <span class="math">\(y\)</span> and <span class="math">\(z\)</span> are the absolute position of the drone relative to some origin and <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span> and <span class="math">\(\gamma\)</span>
+are the absolute pitch, roll and yaw. The <span class="math">\(\theta\)</span> vector represents our current estimates of the correction parameters
+necessary to convert sensor measurements into an estimate of <span class="math">\(\omega\)</span>. We shall fill in this vector as we proceed.</p>
+<p>I&#8217;ll assume that a) the floor is flat and b) the floor is the <span class="math">\(z = 0\)</span> plane and so <span class="math">\(z\)</span> is the vertical distance from the
+drone to the floor.</p>
+<p>I&#8217;m also assuming that the real-world time between <span class="math">\(t-1\)</span> and <span class="math">\(t\)</span> is one second. In general this wont be the case and so
+an appropriate <span class="math">\(\Delta t\)</span> should be inserted into these equations where necessary.</p>
+<div class="section" id="estimating-from-the-drone">
+<h2>Estimating <span class="math">\(\omega\)</span> from the drone<a class="headerlink" href="#estimating-from-the-drone" title="Permalink to this headline">¶</a></h2>
+<p>The drone provides estimates of <span class="math">\(x'_t = dx / dt\)</span> and <span class="math">\(y'_t = dy / dt\)</span> in metres-per-second. It also provides a direct
+estimate of height, <span class="math">\(h_t\)</span>. Given some estimate of state at time <span class="math">\(t-1\)</span>, <span class="math">\(\hat{\omega}_{t-1}\)</span>, it is clear that our
+estimate of position at time <span class="math">\(t\)</span> given the drone&#8217;s sensors is:</p>
+<div class="math">
+\[\hat{x}^{(d)}_t = \hat{x}_{t-1} + x'_t, \quad
+\hat{y}^{(d)}_t = \hat{y}_{t-1} + y'_t, \quad
+\hat{z}^{(d)}_t = h_t.\]</div>
+<p>The drone provides direct estimates of yaw, pitch and roll. Since pitch and roll are measured using an accelerometer we
+shall assume that the drone is accelerating slowly w.r.t. gravity and hence:</p>
+<div class="math">
+\[\hat{\alpha}^{(d)}_t = \alpha_t, \quad
+\hat{\beta}^{(d)}_t = \beta_t.\]</div>
+<p>We assume that the yaw is subject to some linear drift, <span class="math">\(\Delta\gamma\)</span> over time and so:</p>
+<div class="math">
+\[\hat{\gamma}^{(d)}_t = \hat{\gamma}_{t-1} + (\gamma_t - \gamma_{t-1}) - \hat{\Delta\gamma}\]</div>
+<p>where <span class="math">\(\hat{\Delta\gamma}\)</span> is our current estimate of the linear drift. There are many ways of estimating this. A very
+simple one is to keep track of the expected value of <span class="math">\(\hat{\gamma}_{t} - \hat{\gamma}_{t-1}\)</span> due to the commands
+we&#8217;re sending the drone (e.g. we expect <span class="math">\(\hat{\gamma}_{t-1} = \hat{\gamma}_t\)</span> if we are sending a zero-yaw command) and
+update <span class="math">\(\hat{\Delta\gamma}\)</span> from the measured <span class="math">\(gamma_t - \gamma_{t-1}\)</span>. Ideally this should be smoothed over time with
+some sort of moving average process. This is left as an exercise for the reader(!)</p>
+<p>The value we need to add to the <span class="math">\(\theta\)</span> vector is therefore <span class="math">\(\hat{\Delta\gamma}\)</span>.</p>
+</div>
+<div class="section" id="estimating-from-the-video">
+<h2>Estimating <span class="math">\(\omega\)</span> from the video<a class="headerlink" href="#estimating-from-the-video" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(f_x\)</span> be the horizontal field of view in degrees and <span class="math">\(f_y\)</span> be the vertical field of view in degrees. Therefore, if
+the drone is not moving, a linear pixel offset between the frame at time <span class="math">\(t-1\)</span> and <span class="math">\(t\)</span> of <span class="math">\((\Delta x, \Delta y)\)</span>
+directly leads to image-based estimators for the pitch and roll:</p>
+<div class="math">
+\[\hat{\alpha}^{(i)}_t = \hat{\alpha}_{t-1} + f_y \Delta y, \quad
+\hat{\beta}^{(i)}_t = \hat{\beta}_{t-1} + f_x \Delta x.\]</div>
+<p>The roll may also be directly estimated from the image. If <span class="math">\(\phi\)</span> is the estimated rotational change of the image from
+<span class="math">\(t-1\)</span> to <span class="math">\(t\)</span>, then:</p>
+<div class="math">
+\[\hat{\gamma}^{(i)}_t = \hat{\gamma}_{t-1} + \phi.\]</div>
+<p>In a real system, one would need to account for the horizontal and linear velocities and subtract their contributions
+from <span class="math">\((\Delta x, \Delta y)\)</span>. This is also left as an exercise(!)</p>
+<p>The video stream does not provide a direct way to estimate position but of course if there are markers with known
+locations in the scene, some information may be gleaned.</p>
+</div>
+<div class="section" id="estimating-from-the-dynamics-of-the-drone">
+<h2>Estimating <span class="math">\(\omega\)</span> from the dynamics of the drone<a class="headerlink" href="#estimating-from-the-dynamics-of-the-drone" title="Permalink to this headline">¶</a></h2>
+<p>Finally, given the configuration of the drone we have commanded, we can estimate what we <em>expect</em> <span class="math">\(\omega_t\)</span> to be given
+only <span class="math">\(\hat{\omega}_{t-1}\)</span>. For example, If we are commanding a delta-yaw of <span class="math">\(\Delta \gamma = 10\)</span> degrees-per-second then
+we may estimate, using our dynamic model of the drone, that</p>
+<div class="math">
+\[\hat{\gamma}^{(m)} = \hat{\gamma}_{t-1} + \Delta \gamma\]</div>
+<p>Other models for the remaining elements of <span class="math">\(\hat{\omega}^{(m)}\)</span> may be constructed.</p>
+</div>
+<div class="section" id="fusing-the-sensor-estimates">
+<h2>Fusing the sensor estimates<a class="headerlink" href="#fusing-the-sensor-estimates" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have a set of values, <span class="math">\(k_i\)</span>, <span class="math">\(k_d\)</span> and <span class="math">\(k_m\)</span>, which reflect our relative beliefs in the accuracy of the
+image-based, drone-reported and model-based estimate of our current state. The full estimator for our state is therefore</p>
+<div class="math">
+\[\hat{\omega}_t = \frac{k_d \hat{\omega}^{(d)}_t + k_i \hat{\omega}^{(i)}_t + k_m \hat{\omega}^{(m)}_t}
+{k_d + k_i + k_m}.\]</div>
+<p>The values of <span class="math">\(k_i\)</span>, <span class="math">\(k_d\)</span> and <span class="math">\(k_m\)</span> may be set empirically or one might set them via a Kalman filter. This too is left
+as an exercise.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../probability_guide/">A very brief guide to probability</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        </p>
+
+      </div>
+
+<div class="footer">
+<p>
+Copyright &copy; 2012, Rich Wareham.
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+
+  </body>
+</html>
