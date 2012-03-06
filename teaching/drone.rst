@@ -53,7 +53,7 @@ We assume that the yaw is subject to some linear drift, `\Delta\gamma` over time
 where `\hat{\Delta\gamma}` is our current estimate of the linear drift. There are many ways of estimating this. A very
 simple one is to keep track of the expected value of `\hat{\gamma}_{t} - \hat{\gamma}_{t-1}` due to the commands
 we're sending the drone (e.g. we expect `\hat{\gamma}_{t-1} = \hat{\gamma}_t` if we are sending a zero-yaw command) and
-update `\hat{\Delta\gamma}` from the measured `gamma_t - \gamma_{t-1}`. Ideally this should be smoothed over time with
+update `\hat{\Delta\gamma}` from the measured `\gamma_t - \gamma_{t-1}`. Ideally this should be smoothed over time with
 some sort of moving average process. This is left as an exercise for the reader(!)
 
 The value we need to add to the `\theta` vector is therefore `\hat{\Delta\gamma}`.
