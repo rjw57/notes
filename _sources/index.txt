@@ -36,3 +36,5 @@ These notes are works in progress and may or may not be in a useful state.
     technical/using-git
     teaching/probability_guide
     teaching/drone
+
+    old-english/learning-latin
