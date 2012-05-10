@@ -1,5 +1,5 @@
-Learning Latin
-==============
+An Extract from Ælfric's Latin grammar book
+===========================================
 
     This is a partial translation of the beginning of Ælfric's *Excerptiones de arte grammatica anglice* ('Extracts on
     Grammar in English'). I find this piece particularly interesting because it includes a discussion on how to
