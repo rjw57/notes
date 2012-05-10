@@ -61,10 +61,28 @@ Incipit de verbo
 ----------------
 
 *Verbum est pars orationis cum tempore et persona sine casu aut agere aliquit aut pati aut neutrum significans*: 'a
-*verbum* is a word which is part of Latin with time and person without case, signifying either the doing of somthing or
+*verbum* is a word which is part of Latin with time and person without case, signifying either the doing of something or
 the enduring of something or neither'. *Verbum habet septum accidentia*: 'a verb has seven things which belong to it'.
 It has *significatio*, that is 'meaning', what that word means: a deed, a thing to be endured or neither; *tempus*
 'time', *modus* 'mood', *species* 'function', *figura* 'form', *coniugatio*, 'conjugation', *persona* 'person',
 *numerus* 'number'. We shall now in order carefully consider each of these.
 
-    **At this point Ælfric expounds at length about the grammar of Latin verbs.**
+*Significatio* is 'meaning', what the word means. Each complete word with *-o* or *-or*. An *-o* ending denotes an
+*actiua uerba*, that is an 'active' word, one that shows what one does: *amo* 'I love' describes my action; likewise
+*doceo* 'I teach', *lego* 'I read', *audio* 'I hear'. In each of these words it is my action which is described. These
+and their like are called *actiua*, that is 'active', since they describe actions. Add an *-r* to these words and they
+become *passiua*, that is 'passive', not in the sense that they denote suffering, rather that the other person's action
+happened to me rather than to you; in Latin they are *passiuum uerbum*. I now say *amo* 'I love', then you say *quem
+amas*?  'Whom do you love'? I say *te amo* 'I love you' and so my love is directed at you and you may say *amor a te* 'I
+am loved by you'; *doceo te* 'I teach you', and you say: *doceor a te* 'I am taught by you', *et cetera*.
+
+So, there is a word called *actiua*, that is 'active', that you end with an *-o* and you make it *passiua uerba*, that is
+a 'passive verb', by giving it an *-r*, as we said above. A word which ends with with an *-o* and may not be understood
+to be *passiua* is called *neutra*, that is 'of neither kind' or 'neutral'; *uiuo* 'I live', *spiro* 'I breathe', *sto*
+'I stand', *ambulo* 'I walk', *sedeo* 'I sit'. These words be cannot be *passiuum*, since their action cannot be
+performed by any other person but the speaker. However, some which are *neutrum* are *passiuum* in the third person, not
+in relation to a person but to another thing: *aro* 'I plough', *aras* 'you plough', *arat* 'he ploughs'. No one says 'I
+am ploughed' but in the third person it is said: *aratur terra* 'the land is ploughed'; *bibo* 'I drink', *bibitur
+uinum* 'the wine is drunk'; *manduco* 'I eat', *manducatur panis* 'the loaf is eaten'; *laboro* 'I toil', *laboratur
+uestis* 'the clothing is worn out', *et cetera*.
+
