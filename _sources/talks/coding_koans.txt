@@ -6,6 +6,11 @@ Links
 
 * Slides [:download:`LibreOffice <coding_koans/slides.odp>`] [:download:`PDF <coding_koans/slides.pdf>`]
 
+Errata
+------
+
+* The 'earth, air, fire, water and heart' slide contains one element repeated and one element omitted.
+
 Introduction
 ------------
 
