@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Coding Koans: Best and Worst Practice in Software Engineering &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2012-09-27',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="next" title="Using git for your work" href="../../technical/using-git/" />
+    <link rel="prev" title="An Extract from Ælfric’s Latin grammar book" href="../../old-english/learning-latin/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>Coding Koans: Best and Worst Practice in Software Engineering</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../old-english/learning-latin/">An Extract from Ælfric&#8217;s Latin grammar book</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="coding-koans-best-and-worst-practice-in-software-engineering">
+<h1>Coding Koans: Best and Worst Practice in Software Engineering<a class="headerlink" href="#coding-koans-best-and-worst-practice-in-software-engineering" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Slides [<a class="reference download internal" href="../../_downloads/slides.odp"><tt class="xref download docutils literal"><span class="pre">LibreOffice</span></tt></a>] [<a class="reference download internal" href="../../_downloads/slides.pdf"><tt class="xref download docutils literal"><span class="pre">PDF</span></tt></a>]</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: TITLE</strong></p>
+<p>This talk is a little different from other talks that you&#8217;ve seen over the past few days. Instead of giving you an
+overview of a specific system or specific practice I&#8217;m going to talk about some handy &#8216;rules of thumb&#8217; I&#8217;ve collected
+during my time as a software developer. I&#8217;ve tailored these to some common mistakes I&#8217;ve seen in academic projects. If
+this entire talk is boring to you and if you think you know everything in it, that&#8217;s great. You&#8217;re in the minority in my
+experience.</p>
+<p><strong>SLIDE: AN APOLOGY</strong></p>
+<p>Firstly, an apology. This was originally a one hour talk which I cut down to half an hour to write the abstract. Then I
+found out the talks were 15 minutes after I submitted the abstract.</p>
+<p><strong>SLIDE: HYPOCRITE</strong></p>
+<p><strong>SLIDE: CLOCK</strong></p>
+<p>And a disclaimer. I&#8217;m a hypocrite. I don&#8217;t always do what I claim is best practice. I&#8217;m human. Fortunately the talk on
+my actual work was on Monday and so you&#8217;ve all forgotten it by now.</p>
+<p>I&#8217;m assuming the audience for this talk ave written real programs used by real users.</p>
+<p><strong>SLIDE: PICTURES/WORDS</strong></p>
+<p>This talk will have pictures up there and words down here.</p>
+<p>A koan is a little &#8216;nugget of wisdom&#8217; in Zen Buddhism. It could be called a saying or a proverb. I chose the word &#8216;koan&#8217;
+only because it alliterates with &#8216;coding&#8217; thus preserving the great Anglo Saxon oral tradition.</p>
+<p><strong>SLIDE: CONTEXT/WISDOM</strong></p>
+<p>If we extend the zen metaphor a little, I&#8217;m the round-stomached master and you&#8217;re the neophytes. Context is up there,
+wisdom comes from down here. In reality, distraction is up there and noise is down there. It&#8217;s the morning after the
+conference dinner so something light should be good for you guys!</p>
+<p><strong>SLIDE: DISTRACTION/NOISE</strong></p>
+<p>If you&#8217;ve had too much to drink last night, there&#8217;ll be some distraction and noise.</p>
+<p><strong>SLIDE: ABOUT ME</strong></p>
+<p>I&#8217;m supposed to be listened to at all by you people, I should probably tell you a bit about myself.</p>
+<p>the moment I&#8217;m collaborating with some people here at Harwell on an IT infrastructure and suite of software for
+single molecule imaging and analysis.</p>
+<p><strong>SLIDE: GEOMERICS</strong></p>
+<p>a previous life, however, I was a professional software engineer. I was chief product developer at a company called
+Geomerics which developed middleware for the games industry.</p>
+<p>I&#8217;m responsible for Battlefield 3 looking so pretty while you run around killing people.</p>
+<p>In maths:</p>
+<p><strong>SLIDE</strong></p>
+<blockquote>
+<div>picture = render( model( death ) )</div></blockquote>
+<p>A picture is formed by rendering a model which represents the abstract concept of death.</p>
+<p><strong>SLIDE</strong></p>
+<p>I&#8217;m also a founder of and product inventor for PneumaCare who develop passive medical monitoring systems using computer
+vision.</p>
+<p><strong>SLIDE</strong></p>
+<blockquote>
+<div>life = interpretation( vision( picture ) )</div></blockquote>
+<p>A picture is interpreted via computer vision into a model which is interpreted in a manner which preserves life.</p>
+<p>They may seem different things but of course we&#8217;re mathematicians and we realise the power of the inverse:</p>
+<p><strong>SLIDE</strong></p>
+<blockquote>
+<div>( model^-1 ( render^-1( picture ) ) )^-1 = interpretation( vision( picture ) )</div></blockquote>
+<p><strong>SLIDE: THINGS I LOVE TOO MUCH</strong></p>
+<p>In industry I was in charge of software quality engineering: something I&#8217;m quite unreasonably excited by.</p>
+<p><strong>SLIDE: MONK</strong></p>
+<p>Although the title of the talk talks about Zen, philosophy, etc and makes it seem like I&#8217;m trying to be some sort of of
+OCD, geeky monk.</p>
+<p><strong>SLIDE: PHB</strong></p>
+<p>I&#8217;m probably more of a PHB.</p>
+<p>I could give you one piece of advice for the future it would be this: use source control. The long-term benefits to
+maintainability of source control is well known. The rest of my advice has no more basis in fact than my own meandering
+experience. I shall dispense this advice now.</p>
+</div>
+<div class="section" id="lazy">
+<h2>lazy<a class="headerlink" href="#lazy" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: BE LAZY</strong></p>
+<p><strong>SLIDE: MAD DOG</strong></p>
+<p>Develop an aesthetic which used to be called the &#8216;UNIX way&#8217;. In essence any task can be broken into two costs: the
+upfront cost and the per-incidence cost. The lazy way is to make the per-incidence cost as close to zero as possible,
+even if it makes the upfront cost large in terms of effort.</p>
+<p><strong>SLIDE: WINDOWS v UNIX</strong></p>
+<p>For example here we are developing a piece of single molecule tracking software for use in our pipeline called Biggles.
+The Biggles software suite consists of several modules including a test-data simulation module. Test-data is generated
+each build (if the simulation software changes) and is compared with an expected SHA-1 hash as part of the test
+suite.</p>
+<p>This has the following advantages:</p>
+<ul class="simple">
+<li>New-users have data to play with immediately;</li>
+<li>Can regression-test simulator;</li>
+<li>Test-data is plotted as part of build system too;</li>
+<li>Makes checkout smaller;</li>
+<li>Forces repeatability</li>
+</ul>
+<p>Took more effort: needed to refactor PRNG to allow seed specification and sort out build system to auto-detect Python
+version and to allow simulator to be driven from configuration files. Worth it because now that functionality makes
+making standard dataset easy: consists of simulation parameters, git commit ID and SHA-1 of output.</p>
+</div>
+<div class="section" id="steal">
+<h2>Steal<a class="headerlink" href="#steal" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: STEAL</strong></p>
+<p>Your time is precious. Steal the work of others. To first order, you will <em>never</em> need to write another database, file
+format, text-based metadata format, message passing interface, network protocols, data catalogues, archival formats,
+query languages, data processing languages and user identification and authentication systems.</p>
+<p>has been evidenced by the vast number of projects based on the Eclipse RCP here, stealing is good.</p>
+</div>
+<div class="section" id="drink-the-kool-aid-and-spit-it-out">
+<h2>Drink the Kool Aid (and spit it out)<a class="headerlink" href="#drink-the-kool-aid-and-spit-it-out" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: DRINK THIS MUCH EVERY DAY</strong></p>
+<p>Your institution will have opinionated people in it. I&#8217;m sure we can all think of at least one person. I know that I&#8217;m
+that person in my lab. See what Kool-Aid they&#8217;re drinking, be it eclipse, Python, Java, numpy, OpenMPI, ZeroMQ, etc..
+Find five reasons to love it. Find five reasons to hate it. Drink their Kool-Aid but don&#8217;t worry about spitting it out
+if it tastes bad.</p>
+<p>Earlier this week there was a talk about how to choose a data catalogue. I don&#8217;t know if one of the criteria was &#8216;I&#8217;ll
+have what she&#8217;s having&#8217; but it should&#8217;ve been. Our system here has currently a, to put it charitably, interesting data
+cataloguing and dataset management system which grew organically from a single microscope, a Windows Network share and
+LabView. We&#8217;re migrating over to ICAT (we have drunk the STFC&#8217;s Kool-Aid). Obviously ICAT is better than what we have
+but also using it makes a large number of things Not Our Problem.</p>
+</div>
+<div class="section" id="work-rest-and-play">
+<h2>Work, rest and play<a class="headerlink" href="#work-rest-and-play" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: MARS</strong></p>
+<p>The Metropolis Hastings algorithm is a Monte Carlo sampling algorithm which can be used to optimise tricky problems by
+exploring the search space in a statistically guided manner. In essence you start from one position, propose a new
+position and accept that proposal according to a &#8216;goodness ratio&#8217; between them. In the Metropolis Hastings algorithm,
+the usual rule of thumb is that the acceptance rate should be around 25% - or only 1 in 4 proposals are accepted.</p>
+<p>You will not be effective unless you explore the problem domain you&#8217;re working on. Spend 80% of your time working:
+writing software. Spend 10% of your time resting: watch videos on YouTube. There are 30 new software engineering relatev
+videos uploaded to YouTube every day and that&#8217;s not just idle fact, that&#8217;s cold hard speculation. There are masses of
+fascinating talks on databases, new bits of software, new libraries. The Google Tech Talk channel alone is full of good
+stuff to file away in your brain for future reference. Another good resource is the PyCon conference talks. They&#8217;re also
+YouTube.</p>
+<p>Spend the last 10% of your time playing. This corresponds to the proposal moves in the MH algorithm. It may or may not
+useful but it will give you some broad domain knowledge you&#8217;ll be able to call on in future.</p>
+<p>I have &#8216;Friday afternoon projects&#8217; which I reserve for this sort of thing. I&#8217;ll play with some technique or a bit of
+software to get a feel for it. Maybe I&#8217;ll implement a little toy project. Some things I&#8217;ve first encountered through
+Friday afternoon projects which I&#8217;ve gone on to use &#8216;professionally&#8217;: Machine learning algorithms, the RANSAC data
+filter, matplotlib, CouchDB, PostGIS, Monte Carlo Metropolis-Hastings optimisation, GPU acceleration.</p>
+<p>Here&#8217;s an example of a 10% project. Being at a University one has access to a large number of useful digital resources.
+girlfriend is a landscape archaeologist. And, by the way, data analysis looks like dark magic to archaeologists. She
+was doing some work on a digital elevation model covering the ground between Avebury and Stonehenge and trying to use
+road planning software to work out where neolithic people would&#8217;ve walked.</p>
+<p><strong>SLIDE: AVEBURY</strong></p>
+<p>Avebury is a neolithic standing circle of stones which is a few miles away from the far more famous Stonehenge.</p>
+<p><strong>SLIDE: STONEHENGE</strong></p>
+<p>I thought Stonehenge appropriate by the way since of course some people think it to be one of the earliest colaborative
+Science computer systems. Being four and a half thousand years old, I think the one thing we can say with confidence is
+that it ran FORTRAN.</p>
+<p>The road planning software would only give a single shortest path route between Avebury and Stonehenge. And, of course,
+neolithic man didn&#8217;t have road planning software. So, to get myself familiar with the MH algorithm which had been on my
+list of &#8216;to learn&#8217; for a while, I simulated generations of neolithic people setting out across country, proposing a
+modification to the route and coming back to report to the village. I then plotted a heat map showing the posterior
+probability density of a neolithic man on their way from Avebury to Stonehenge being in a particular position.</p>
+<p><strong>SLIDE: HEAT MAP</strong></p>
+<p>This is the result. [WAX LYRICAL]</p>
+<p><strong>SLIDE: REST ANTI-PATTERNS</strong></p>
+<p>While I&#8217;m on the subject of Rest BTW. Read this article. I&#8217;ve heard a lot of people claim to ave REST APIs the past few
+days. In my experience, not all REST APIs are created equal.</p>
+</div>
+<div class="section" id="good-engineers-call-on-captain-planet">
+<h2>Good Engineers call on Captain Planet<a class="headerlink" href="#good-engineers-call-on-captain-planet" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: CAPTAIN PLANET</strong></p>
+<p>What was Captain Planet? Hero. Gonna bring pollution down to zero.</p>
+<p><strong>SLIDE: PLANETEERS</strong></p>
+<p>Had five planeteers representing the five major races of Earth: black, white, asian, native American and ginger. Had
+magic rings representing...</p>
+<p><strong>SLIDE: EARTH, AIR, WIND, FIRE, HEART</strong></p>
+<p>... the five elements of Earth, Air, Wind, Fire and Heart. It was only by combining their powers that Captain Planet
+would appear.</p>
+<p><strong>SLIDE: CALL ON CAPTAIN PLANET</strong></p>
+<p>The moral message being that everyone has different strengths and weaknesses and that amazing things can be done when
+people work together. In this case, there are lots of developers on your team and they need to be kept on the same page.</p>
+<p><strong>SLIDE: GERRIT AND JENKINS</strong></p>
+<p>For the Biggles project we use code-review via Gerrit. This leverages the power of git. [CHAT ON GERRIT]</p>
+<p>Jenkins is a continuous integration system. [TALK ABOUT JENKINS]</p>
+<p><strong>SLIDE: BAD CHECKIN - MISSING FILE</strong></p>
+<p><strong>SLIDE: JENKINS - TEST SUITES</strong></p>
+<p><strong>SLIDE: USE CODE REVIEW</strong></p>
+<p><strong>SLIDE: MAKE JENKINS A REVIEWER</strong></p>
+<p>commit can be made where the test suite does not pass. Was going to do a demo, but no time.</p>
+</div>
+<div class="section" id="make-it-easy-to-play-with">
+<h2>Make it easy to play with<a class="headerlink" href="#make-it-easy-to-play-with" title="Permalink to this headline">¶</a></h2>
+<p>Deep-dive ICAT. Our dataset management system is switching over to ICAT (see the Drinking Kool-Aid example).</p>
+<p><strong>SLIDES</strong></p>
+<ul class="simple">
+<li>Here is web-page - how do I install ICAT?</li>
+<li>Instruction! - Oh, no.</li>
+<li>Tester? Yeah I want to play with it. Oh.</li>
+<li>Documentation. OK first section, what is ICAT, how do I install itm how do I get started? No.</li>
+<li>Installation off documentation page. Something about databases.</li>
+<li>Finally download it, run, wants DB. Configure sqlite database. Needs populating. Some scripts in the Source Control.
+Oh, Oracle.</li>
+</ul>
+<p><strong>SLIDE: GERRIT AND JENKINS INSTALL</strong></p>
+<p>Why can&#8217;t ICAT be as easy to set up as this:</p>
+<div class="section" id="gerrit">
+<h3>Gerrit<a class="headerlink" href="#gerrit" title="Permalink to this headline">¶</a></h3>
+<div class="code highlight-python"><pre>$ java -jar gerrit.jar init &lt;dir&gt;
+$ &lt;dir&gt;/bin/run.sh</pre>
+</div>
+</div>
+<div class="section" id="jenkins">
+<h3>Jenkins<a class="headerlink" href="#jenkins" title="Permalink to this headline">¶</a></h3>
+<div class="code highlight-python"><pre>$ java -jar jenkins.jar</pre>
+</div>
+</div>
+</div>
+<div class="section" id="the-end">
+<h2>The End<a class="headerlink" href="#the-end" title="Permalink to this headline">¶</a></h2>
+<p><strong>SLIDE: FINISHED RANT</strong></p>
+<p>That&#8217;s it. I&#8217;m done.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../old-english/learning-latin/">An Extract from Ælfric&#8217;s Latin grammar book</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../technical/using-git/">Using git for your work</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+<div class="footer">
+<p>
+Copyright &copy; 2012, Rich Wareham.
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+
+  </body>
+</html>

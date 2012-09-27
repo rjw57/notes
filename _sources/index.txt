@@ -26,6 +26,16 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
     teaching/random
     old-english/learning-latin
 
+Talks
+-----
+
+Slides and notes from talks I have given.
+
+.. toctree::
+    :maxdepth: 1
+
+    talks/coding_koans
+
 Work in progress notes
 ----------------------
 
