@@ -4,6 +4,9 @@ Coding Koans: Best and Worst Practice in Software Engineering
 Links
 -----
 
+Please note that slide imagery is used under fair use doctrine where appropriate and such material is not covered by the same
+licence as the remainder of this talk.
+
 * Slides [:download:`LibreOffice <coding_koans/slides.odp>`] [:download:`PDF <coding_koans/slides.pdf>`]
 
 Errata
