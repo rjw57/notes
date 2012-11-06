@@ -65,7 +65,7 @@ in the <tt class="docutils literal"><span class="pre">/system/usr/keylayout</spa
 <tt class="docutils literal"><span class="pre">/system/usr/keylayout/Generic.kl</span></tt>.</p>
 <p>Connect your device via USB, having made use USB debugging is turned on, and use the <tt class="docutils literal"><span class="pre">adb</span></tt> tool to download the
 original file to your machine:</p>
-<div class="highlight-python"><pre>$ adb pull /system/usr/keylayout/Generic.kl</pre>
+<div class="code console highlight-python"><pre>$ adb pull /system/usr/keylayout/Generic.kl</pre>
 </div>
 <p>This file has a reasonably obvious format. I modified mine to replace Caps Lock with Left Control and re-mapped the Left
 Control to Tab. My <a class="reference download internal" href="../../_downloads/Generic.kl"><tt class="xref download docutils literal"><span class="pre">modified</span> <span class="pre">layout</span></tt></a> is available for download and is, like the
@@ -73,20 +73,15 @@ original, licensed under the Apache 2.0 licence. Obviously you should keep a bac
 disaster.</p>
 <p>Once you have modified your layout, push it to your device. You cannot write directly to <tt class="docutils literal"><span class="pre">/system</span></tt> since the
 filesystem is mounted read-only. For the moment, we&#8217;ll copy it to the SD card:</p>
-<div class="highlight-python"><pre>$ adb push Generic.kl /sdcard/Generic.kl</pre>
+<div class="code console highlight-python"><pre>$ adb push Generic.kl /sdcard/Generic.kl</pre>
 </div>
 <p>Now you&#8217;ll need to run some commands on the device either via <tt class="docutils literal"><span class="pre">adb</span> <span class="pre">shell</span></tt> on on a terminal emulator running on the
-device. In either case you&#8217;ll need to be the <tt class="docutils literal"><span class="pre">root</span></tt> user. This is usually done via the <tt class="docutils literal"><span class="pre">su</span></tt> command:</p>
-<div class="highlight-python"><pre>$ # On the device, become root:
-$ su
-#</pre>
-</div>
-<p>Now make the <tt class="docutils literal"><span class="pre">/system</span></tt> partition read-write, copy the new keyboard layout and restore the read-only nature of
-<tt class="docutils literal"><span class="pre">/system</span></tt>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># mount -o remount,rw /system</span>
-<span class="c"># cp /sdcard/Generic.kl /system/usr/keylayout</span>
-<span class="c"># mount -o remount,ro /system</span>
-</pre></div>
+device. In either case you&#8217;ll need to be the <tt class="docutils literal"><span class="pre">root</span></tt> user. This is usually done via the <tt class="docutils literal"><span class="pre">su</span></tt> command.  Then make the
+<tt class="docutils literal"><span class="pre">/system</span></tt> partition read-write, copy the new keyboard layout and restore the read-only nature of <tt class="docutils literal"><span class="pre">/system</span></tt></p>
+<div class="code console highlight-python"><pre>$ su
+# mount -o remount,rw /system
+# cp /sdcard/Generic.kl /system/usr/keylayout
+# mount -o remount,ro /system</pre>
 </div>
 <p>Now your keyboard should have your custom mapping.</p>
 </div>

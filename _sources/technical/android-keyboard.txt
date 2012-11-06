@@ -13,7 +13,9 @@ in the ``/system/usr/keylayout`` directory. The defauly keyboard layout which we
 ``/system/usr/keylayout/Generic.kl``.
 
 Connect your device via USB, having made use USB debugging is turned on, and use the ``adb`` tool to download the
-original file to your machine::
+original file to your machine:
+
+.. code:: console
 
     $ adb pull /system/usr/keylayout/Generic.kl
 
@@ -23,20 +25,19 @@ original, licensed under the Apache 2.0 licence. Obviously you should keep a bac
 disaster.
 
 Once you have modified your layout, push it to your device. You cannot write directly to ``/system`` since the
-filesystem is mounted read-only. For the moment, we'll copy it to the SD card::
+filesystem is mounted read-only. For the moment, we'll copy it to the SD card:
+
+.. code:: console
 
     $ adb push Generic.kl /sdcard/Generic.kl
 
 Now you'll need to run some commands on the device either via ``adb shell`` on on a terminal emulator running on the
-device. In either case you'll need to be the ``root`` user. This is usually done via the ``su`` command::
-    
-    $ # On the device, become root:
-    $ su
-    #
+device. In either case you'll need to be the ``root`` user. This is usually done via the ``su`` command.  Then make the
+``/system`` partition read-write, copy the new keyboard layout and restore the read-only nature of ``/system``
 
-Now make the ``/system`` partition read-write, copy the new keyboard layout and restore the read-only nature of
-``/system``::
+.. code:: console
     
+    $ su
     # mount -o remount,rw /system
     # cp /sdcard/Generic.kl /system/usr/keylayout
     # mount -o remount,ro /system
