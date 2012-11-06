@@ -26,6 +26,8 @@ These notes are mostly complete or are unlikely to be updated greatly beyond bug
     teaching/random
     old-english/learning-latin
 
+    technical/android-keyboard
+
 Talks
 -----
 

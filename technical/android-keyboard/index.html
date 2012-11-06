@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Remapping a Bluetooth keyboard on Android &mdash; Some Notes on Interesting Things</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2012-11-06',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Some Notes on Interesting Things" href="../../" />
+    <link rel="next" title="Coding Koans: Best and Worst Practice in Software Engineering" href="../../talks/coding_koans/" />
+    <link rel="prev" title="An Extract from Ælfric’s Latin grammar book" href="../../old-english/learning-latin/" />
+<link rel="stylesheet" href="../../_static/custom.css" type="text/css">
+
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../">
+          <span>Some Notes on Interesting Things</span></a></h1>
+        <h2 class="heading"><span>Remapping a Bluetooth keyboard on Android</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../old-english/learning-latin/">An Extract from Ælfric&#8217;s Latin grammar book</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../talks/coding_koans/">Coding Koans: Best and Worst Practice in Software Engineering</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="remapping-a-bluetooth-keyboard-on-android">
+<h1>Remapping a Bluetooth keyboard on Android<a class="headerlink" href="#remapping-a-bluetooth-keyboard-on-android" title="Permalink to this headline">¶</a></h1>
+<p>I have a Bluetooth keyboard from my Android device which I am very happy with except that the keyboard itself has no
+Escape or Tab keys on it. The former isn&#8217;t so much of a problem because I can use Ctrl+[ in vim in place of Escape.  The
+latter is if you spend any time in the terminal.</p>
+<p>I found a <a class="reference external" href="http://chris.boyle.name/2010/08/android-keymaps">guide</a> on re-mapping the AAndroid keyboard but it needs a
+little updating for Jelly Bean (the version which I have on my Nexus 7).</p>
+<p>Firstly, you&#8217;ll need to have a rooted device and access to the <tt class="docutils literal"><span class="pre">adb</span></tt> command.  The Android keyboard layouts are stored
+in the <tt class="docutils literal"><span class="pre">/system/usr/keylayout</span></tt> directory. The defauly keyboard layout which we&#8217;ll be modifying is
+<tt class="docutils literal"><span class="pre">/system/usr/keylayout/Generic.kl</span></tt>.</p>
+<p>Connect your device via USB, having made use USB debugging is turned on, and use the <tt class="docutils literal"><span class="pre">adb</span></tt> tool to download the
+original file to your machine:</p>
+<div class="highlight-python"><pre>$ adb pull /system/usr/keylayout/Generic.kl</pre>
+</div>
+<p>This file has a reasonably obvious format. I modified mine to replace Caps Lock with Left Control and re-mapped the Left
+Control to Tab. My <a class="reference download internal" href="../../_downloads/Generic.kl"><tt class="xref download docutils literal"><span class="pre">modified</span> <span class="pre">layout</span></tt></a> is available for download and is, like the
+original, licensed under the Apache 2.0 licence. Obviously you should keep a backup of the original file in case of
+disaster.</p>
+<p>Once you have modified your layout, push it to your device. You cannot write directly to <tt class="docutils literal"><span class="pre">/system</span></tt> since the
+filesystem is mounted read-only. For the moment, we&#8217;ll copy it to the SD card:</p>
+<div class="highlight-python"><pre>$ adb push Generic.kl /sdcard/Generic.kl</pre>
+</div>
+<p>Now you&#8217;ll need to run some commands on the device either via <tt class="docutils literal"><span class="pre">adb</span> <span class="pre">shell</span></tt> on on a terminal emulator running on the
+device. In either case you&#8217;ll need to be the <tt class="docutils literal"><span class="pre">root</span></tt> user. This is usually done via the <tt class="docutils literal"><span class="pre">su</span></tt> command:</p>
+<div class="highlight-python"><pre>$ # On the device, become root:
+$ su
+#</pre>
+</div>
+<p>Now make the <tt class="docutils literal"><span class="pre">/system</span></tt> partition read-write, copy the new keyboard layout and restore the read-only nature of
+<tt class="docutils literal"><span class="pre">/system</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># mount -o remount,rw /system</span>
+<span class="c"># cp /sdcard/Generic.kl /system/usr/keylayout</span>
+<span class="c"># mount -o remount,ro /system</span>
+</pre></div>
+</div>
+<p>Now your keyboard should have your custom mapping.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="../../old-english/learning-latin/">An Extract from Ælfric&#8217;s Latin grammar book</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="../../">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="../../talks/coding_koans/">Coding Koans: Best and Worst Practice in Software Engineering</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+<div class="footer">
+<p>
+Copyright &copy; 2012, Rich Wareham.
+This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 UK: England &amp; Wales License</a>.
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/uk/80x15.png" /></a></p>
+</div>
+
+  </body>
+</html>
